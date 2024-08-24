@@ -9,10 +9,6 @@ const router = createBrowserRouter([
     path: "/",
     element: <Login />,
   },
-  {
-    path: "/Quiz",
-    element: <Quiz />,
-  },
 ]);
 createRoot(document.getElementById("root")).render(
   <StrictMode>

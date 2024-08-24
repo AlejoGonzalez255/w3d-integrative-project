@@ -1,11 +1,9 @@
 import './App.css'
+import Login from './pages/login/Login'
 
 function App() {
   return (
-  <div className="App">
-    <h1>Bienvenido a mi aplicación</h1>
-    <login />
-  </div>
+    <Login />
   )
 }
 

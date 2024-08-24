@@ -2,10 +2,10 @@ import './App.css'
 
 function App() {
   return (
-  <>
-  <h1>hola mundo!!</h1>
-  <h2>Inicio de projecto</h2>
-  </>
+  <div className="App">
+    <h1>Bienvenido a mi aplicación</h1>
+    <login />
+  </div>
   )
 }
 

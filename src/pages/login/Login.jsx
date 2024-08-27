@@ -34,7 +34,7 @@ const Login = () => {
   }, [logout]);
 
   const handleNavigateToWorld = () => {
-    navigate('/world'); // Redirige a la ruta /world
+    navigate('/world'); 
   };
 
   if (loading) {
@@ -43,6 +43,11 @@ const Login = () => {
 
   return (
     <div className="container-login">
+      <img
+        className="login-image"
+        src="\public\ecoearth.jpeg"
+        alt="ECOEARTH"
+      />
       {user ? (
         <>
           <p className="welcome-text">Bienvenido, {user.displayName}</p>
@@ -54,7 +59,7 @@ const Login = () => {
           </button>
         </>
       ) : (
-        <button onClick={handleLogin}>Iniciar sesión</button>
+        <button className="button-login" onClick={handleLogin}>Iniciar sesión</button>
       )}
     </div>
   );

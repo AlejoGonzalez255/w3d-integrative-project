@@ -33,6 +33,10 @@ const Login = () => {
     logout();
   }, [logout]);
 
+  const handleNavigateToWorld = () => {
+    navigate('/world'); // Redirige a la ruta /world
+  };
+
   if (loading) {
     return <p className="loading-text">Cargando...</p>;
   }
@@ -42,6 +46,9 @@ const Login = () => {
       {user ? (
         <>
           <p className="welcome-text">Bienvenido, {user.displayName}</p>
+          <button className="button-seguir" onClick={handleNavigateToWorld}>
+            Seguir
+          </button>
           <button className="button-logout" onClick={handleLogout}>
             Cerrar sesión
           </button>

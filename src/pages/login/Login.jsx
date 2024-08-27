@@ -45,7 +45,7 @@ const Login = () => {
     <div className="container-login">
       <img
         className="login-image"
-        src="/ecoearth.jpeg"
+        src="/ecoearth.png"
         alt="ECOEARTH"
       />
       {user ? (

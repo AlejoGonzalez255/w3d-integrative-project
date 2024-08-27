@@ -49,11 +49,8 @@
 .login-image {
   width: 100%;  
   max-width: 200px;  
-  height: auto;  
-  margin-bottom: 20px;
-  border-radius: 10px;
-  object-fit: contain;  
-  border: 2px solid #4CAF50; 
+  height: auto; 
+  margin-bottom: 20px; 
 }
 
 

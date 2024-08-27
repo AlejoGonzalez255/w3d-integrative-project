@@ -1,18 +1,61 @@
 .container-login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
-  .welcome-text {
-    font-size: x-large;
-    color: #333;
-  }
-  
-  .loading-text {
-    font-size: medium;
-    color: #666;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.welcome-text {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.button-seguir,
+.button-logout,
+.button-login {
+  background-color: #4CAF50; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-seguir:hover,
+.button-logout:hover,
+.button-login:hover {
+  background-color: #45a049; 
+}
+
+.button-seguir:focus,
+.button-logout:focus,
+.button-login:focus {
+  outline: none;
+  box-shadow: 0 0 5px 2px rgba(0, 128, 0, 0.3);
+}
+
+.loading-text {
+  font-size: 18px;
+  color: #666;
+}
+
+.login-image {
+  width: 100%;  
+  max-width: 200px;  
+  height: auto;  
+  margin-bottom: 20px;
+  border-radius: 10px;
+  object-fit: contain;  
+  border: 2px solid #4CAF50; 
+}
+
+
+
   

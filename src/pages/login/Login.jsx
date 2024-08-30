@@ -3,10 +3,13 @@ import { useCallback, useEffect } from "react";
 import useAuthStore from "../../stores/use-auth-store";
 import UserDAO from "../../daos/UserDao";
 import { useNavigate } from "react-router-dom";
+import LogoNameSlogan from "../../components/LogoNameSlogan/LogoNameSlogan";
 
 const Login = () => {
-  const { user, loginGoogleWithPopUp, logout, observeAuthState, loading } =
+  const { user, loginGoogleWithPopUp, observeAuthState, loading } =
     useAuthStore();
+
+  console.log(user);
 
   const navigate = useNavigate();
 
@@ -29,43 +32,24 @@ const Login = () => {
     loginGoogleWithPopUp();
   }, [loginGoogleWithPopUp]);
 
-  const handleLogout = useCallback(() => {
-    logout();
-  }, [logout]);
-
-  const handleNavigateToWorld = () => {
-    navigate('/world'); 
-  };
-
   if (loading) {
-    return <p className="loading-text">Cargando...</p>;
+    return;
   }
 
   return (
     <div className="container-login">
-      <img
-        className="login-image"
-        src="/ecoearth-log-name-slogan.png"
-        alt="ECOEARTH"
-      />
-      {user ? (
+      {loading ? (
+        <p className="loading-text">Cargando...</p>
+      ) : (
         <>
-          <p className="welcome-text">Bienvenido, {user.displayName}</p>
-          <button className="button-seguir" onClick={handleNavigateToWorld}>
-            Seguir
-          </button>
-          <button className="button-logout" onClick={handleLogout}>
-            Cerrar sesión
+        <LogoNameSlogan className={"login-image"}/>
+          <button className="button-login" onClick={handleLogin}>
+            Iniciar sesión
           </button>
         </>
-      ) : (
-        <button className="button-login" onClick={handleLogin}>Iniciar sesión</button>
       )}
     </div>
   );
 };
 
 export default Login;
-
-
-

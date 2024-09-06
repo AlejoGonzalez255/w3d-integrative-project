@@ -1,4 +1,4 @@
-import { useRef, useMemo, useEffect } from "react";
+import { useRef, useMemo} from "react";
 import { useGraph, useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
@@ -16,7 +16,7 @@ function TestDummy3d(props) {
       const elapsedTime = state.clock.getElapsedTime();
       const distance = 20; // Distancia a moverse horizontalmente
   
-      // Movimiento vertical (puedes dejarlo o quitarlo según lo que desees)
+      // Movimiento vertical 
       groupRef.current.position.y = Math.sin(elapsedTime) * 5;
   
       // Movimiento horizontal progresivo ida y vuelta
@@ -31,7 +31,7 @@ function TestDummy3d(props) {
 
   return (
     <group {...props} dispose={null} ref={groupRef}>
-      <group position={[10, 0, 1]} rotation={[1, 5, 1]} scale={0.1}>
+      <group position={[10, 5, 1]} rotation={[1, 5, 1]} scale={0.1}>
         <primitive object={nodes._rootJoint} />
         <group position={[0, 1, 0]} scale={1}>
           <mesh

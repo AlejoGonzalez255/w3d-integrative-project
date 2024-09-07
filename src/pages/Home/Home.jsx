@@ -1,8 +1,10 @@
 import "./Home.css";
 import useAuthStore from "../../stores/use-auth-store";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import UserDAO from "../../daos/UserDao";
 import LogoName from "../../components/LogoName/LogoName";
+import { getDocs, query, where } from "firebase/firestore";
 
 
 export default function Home() {
@@ -11,6 +13,25 @@ export default function Home() {
 
   const navigate = useNavigate();
 
+  useEffect( ()  => {
+    const emailValidation = async () => {
+      const queryEmail = query(UserDAO.collectionRef, where("email", "==", user.email));
+      const email =  await getDocs(queryEmail);
+    
+    if (user && email.empty) {
+      
+      const newUser = {
+        email: user.email,
+        name: user.displayName,
+        photo: user.photoURL,
+      };
+      UserDAO.createUser(newUser);
+    }
+
+  }
+  emailValidation()
+  }, [user]);
+  
   const handleLogout = useCallback(() => {
     logout();
   }, [logout]);

@@ -22,11 +22,11 @@ const House3d = () => {
     <group ref={house} scale={[2, 1, 3]}>
       <mesh position={[0, 2, 0]} rotation={[0, Math.PI * 0.25, 0]}>
         <coneGeometry args={[1, 1, 4]} />
-        <meshStandardMaterial color="blue" />
+        <meshStandardMaterial color="#8946ea" />
       </mesh>
       <mesh position={[0, 1, 0]}>
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color="red" />
+        <meshStandardMaterial color="#931045" />
       </mesh>
     </group>
   );

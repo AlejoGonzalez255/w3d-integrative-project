@@ -3,6 +3,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { PointerLockControls } from "@react-three/drei";
 import * as THREE from 'three';
 import House3d from "../../components/House3d/House3d";
+import Tree from "../../components/Tree/Tree";
 import TestDummy3d from "../../components/TestDummy/TestDummy3d";
 import Floor from "../../components/Floor/Floor";
 
@@ -65,6 +66,7 @@ const World = () => {
       
       <House3d />
       <TestDummy3d />
+      <Tree />
       <Floor />
     </Canvas>
   );

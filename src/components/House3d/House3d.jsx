@@ -1,7 +1,4 @@
 import { useRef } from 'react';
-;
-
-
 
 const House3d = () => {
   const house = useRef(null);

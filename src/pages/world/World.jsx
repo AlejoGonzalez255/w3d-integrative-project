@@ -32,8 +32,8 @@ const CameraControls = () => {
   useFrame((state, delta) => {
     const controls = controlsRef.current;
     if (controls) {
-      const moveSpeed = 5;
-      const moveVector = new THREE.Vector3();
+      const moveSpeed = 2;
+      const moveVector = new THREE.Vector3(0,0,0);
 
       if (keyboard['KeyW']) { // W key
         moveVector.z += moveSpeed * delta;

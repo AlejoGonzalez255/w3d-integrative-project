@@ -6,6 +6,7 @@ import House3d from "../../components/House3d/House3d";
 import Tree from "../../components/Tree/Tree";
 import TestDummy3d from "../../components/TestDummy/TestDummy3d";
 import Floor from "../../components/Floor/Floor";
+import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
 
 const CameraControls = () => {
   const controlsRef = useRef();
@@ -68,6 +69,7 @@ const World = () => {
       <TestDummy3d />
       <Tree />
       <Floor />
+      <Bulbasaur/>
     </Canvas>
   );
 };

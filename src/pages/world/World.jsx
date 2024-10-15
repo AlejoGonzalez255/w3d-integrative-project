@@ -6,6 +6,7 @@ import House3d from "../../components/House3d/House3d";
 import Tree from "../../components/Tree/Tree";
 import TestDummy3d from "../../components/TestDummy/TestDummy3d";
 import Floor from "../../components/Floor/Floor";
+import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
 
 const CameraControls = () => {
   const controlsRef = useRef();
@@ -32,8 +33,8 @@ const CameraControls = () => {
   useFrame((state, delta) => {
     const controls = controlsRef.current;
     if (controls) {
-      const moveSpeed = 5;
-      const moveVector = new THREE.Vector3();
+      const moveSpeed = 2;
+      const moveVector = new THREE.Vector3(0,0,0);
 
       if (keyboard['KeyW']) { // W key
         moveVector.z += moveSpeed * delta;
@@ -68,6 +69,7 @@ const World = () => {
       <TestDummy3d />
       <Tree />
       <Floor />
+      <Bulbasaur/>
     </Canvas>
   );
 };

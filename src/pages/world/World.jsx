@@ -2,8 +2,10 @@ import "./World.css";
 import { Canvas } from "@react-three/fiber";
 import { KeyboardControls, PointerLockControls } from "@react-three/drei";
 import House3d from "../../components/House3d/House3d";
+import Tree from "../../components/Tree/Tree";
 import TestDummy3d from "../../components/TestDummy/TestDummy3d";
 import Floor from "../../components/Floor/Floor";
+import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
 import { Player } from "./Player";
 import { Physics } from "@react-three/rapier";
 import { useState } from "react";
@@ -27,6 +29,7 @@ const World = () => {
             <Player />
             <House3d />
             <TestDummy3d />
+            <Bulbasaur/>
             <Floor />
           </Physics>
           <PointerLockControls />

@@ -1,7 +1,7 @@
 import React from "react";
 import { useGLTF } from "@react-three/drei";
 
-const Tree = ({ position = [0, -1, 6], ...props }) => {
+const Tree = ({ position = [0, 0, 8], ...props }) => {
   const { nodes, materials } = useGLTF("models-3d/tree.glb");
 
   const treeObjects = [

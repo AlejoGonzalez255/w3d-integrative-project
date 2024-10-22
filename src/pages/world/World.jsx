@@ -25,11 +25,10 @@ const World = () => {
         <Canvas camera={{ position: [0, 1.5, 5], fov: 75 }}>
           <ambientLight intensity={1.5} />
           <directionalLight position={[0, 10, 10]} />
-          <Physics gravity={[0, -30, 0]}>
+          <Physics gravity={[0, -1, 0]}>
             <Player />
-            <House3d />
             <TestDummy3d />
-            <Bulbasaur/>
+            <Bulbasaur scale={[2,2,2]}/>
             <Floor />
           </Physics>
           <PointerLockControls />

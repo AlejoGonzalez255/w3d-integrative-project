@@ -10,26 +10,9 @@ function TestDummy3d(props) {
 
   const groupRef = useRef(null);
 
-  // Animar el modelo GLTF
-  useFrame((state, delta) => {
-    if (groupRef.current) {
-      const elapsedTime = state.clock.getElapsedTime();
-      const distance = 20; // Distancia a moverse horizontalmente
-
-      // Movimiento vertical
-      groupRef.current.position.y = Math.sin(elapsedTime) * 5;
-
-      // Movimiento horizontal progresivo ida y vuelta
-      groupRef.current.position.z = Math.sin(elapsedTime / 4) * distance; // Movimiento suavizado de ida y vuelta
-
-      // Eliminamos la rotación
-      groupRef.current.rotation.y = 0; // No hay más rotación
-    }
-  });
-
   return (
     <group {...props} dispose={null} ref={groupRef}>
-      <group position={[10, 7, 1]} rotation={[1, 5, 1]} scale={0.1}>
+      <group position={[10, 1.4, 25]} rotation={[1, 5, 1]} scale={0.1}>
         <primitive object={nodes._rootJoint} />
         <group position={[0, 1, 0]} scale={1}>
           <mesh

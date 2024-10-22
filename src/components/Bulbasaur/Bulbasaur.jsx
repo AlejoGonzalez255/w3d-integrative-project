@@ -1,7 +1,7 @@
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
 
-const Bulbasaur = ({ position = [0, 1, 5], ...props }) => {
+const Bulbasaur = ({ position = [0, 0, 0], ...props }) => {
   const { nodes, materials } = useGLTF('models-3d/Bulbasaur.glb')
   const bulbasaurObjects = [
     <group {...props} dispose={null}>

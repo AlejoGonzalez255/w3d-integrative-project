@@ -1,44 +1,39 @@
 import "./World.css";
 import { Canvas } from "@react-three/fiber";
-import { KeyboardControls, PointerLockControls } from "@react-three/drei";
 import House3d from "../../components/House3d/House3d";
 import Tree from "../../components/Tree/Tree";
 import TestDummy3d from "../../components/TestDummy/TestDummy3d";
 import Floor from "../../components/Floor/Floor";
 import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
-import { Player } from "./Player";
 import { Physics } from "@react-three/rapier";
 import { useState } from "react";
 
 const World = () => {
-  const [ready, set] = useState(false)
+  const [ready, setReady] = useState(false);
+
   return (
     <>
-      <KeyboardControls
-        map={[
-          { name: "forward", keys: ["ArrowUp", "w", "W"] },
-          { name: "backward", keys: ["ArrowDown", "s", "S"] },
-          { name: "left", keys: ["ArrowLeft", "a", "A"] },
-          { name: "right", keys: ["ArrowRight", "d", "D"] }
-        ]}
+      <Canvas>
+        <ambientLight intensity={1.5} />
+        <directionalLight position={[0, 10, 10]} />
+
+        <Physics timeStep="vary" debug={true}>
+          <Bulbasaur/> {/* Pasar keyboardMap aquí */}
+          <Tree />
+          <TestDummy3d />
+          <Floor />
+        </Physics>
+      </Canvas>
+
+      <div
+        onClick={() => setReady(true)}
+        className={`fullscreen bg ${ready ? "ready" : "notready"} ${ready && "clicked"}`}
       >
-        <Canvas camera={{ position: [0, 1.5, 5], fov: 75 }}>
-          <ambientLight intensity={1.5} />
-          <directionalLight position={[0, 10, 10]} />
-          <Physics gravity={[0, -1, 0]}>
-            <Player />
-            <TestDummy3d />
-            <Bulbasaur scale={[2,2,2]}/>
-            <Floor />
-          </Physics>
-          <PointerLockControls />
-        </Canvas>
-      </KeyboardControls>
-      <div onClick={() => set(true)} className={`fullscreen bg ${ready ? "ready" : "notready"} ${ready && "clicked"}`}>
-          <button>Iniciar</button>
+        <button>Iniciar</button>
       </div>
-    </>  
-);
+    </>
+  );
 };
 
 export default World;
+

@@ -1,19 +1,19 @@
 const Lights = () => {
   return (
     <>
-      <ambientLight intensity={5.5} />
+      <ambientLight intensity={1.5} />
       <directionalLight 
       color={"#ffffff"}
-      position={[0, 10, 10]}
+      position={[100, 100, 100]}
       intensity={3} 
       castShadow
-      shadow-camera-left={-50}
-      shadow-camera-right={50}
-      shadow-camera-top={50}
-      shadow-camera-bottom={-50}
-      shadow-camera-far={50}
-      shadow-mapSize-width={10}
-      shadow-mapSize-height={10}
+      shadow-camera-left={5}
+      shadow-camera-right={5}
+      shadow-camera-top={5}
+      shadow-camera-bottom={5}
+      shadow-camera-far={5}
+      shadow-mapSize-width={1}
+      shadow-mapSize-height={1}
       shadow-normalBias={0.3}
       />
     </>

@@ -1,49 +1,64 @@
 import { useTexture } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import { useMemo } from "react";
-import { RepeatWrapping, roughness } from "three/webgpu";
+import { RepeatWrapping } from "three";
 
 const Floor = () => {
-  const PATH = useMemo(()=> "materials/floor/brown_mud_leaves_01_",[]);
-  const floorTexture = useTexture({
-      map: PATH + "diff_1k.jpg",
-      displacementMap: PATH + "disp_1k.png",
-      normalMap: PATH + "nor_gl_1k.jpg",
-      roughnessMap: PATH + "rough_1k.jpg",
-      aoMap: PATH + "ao_1k.jpg",
-  })
+  const PATHS = useMemo(() => [
+    "materials/floor/aerial_grass_rock_",  // Primera variación de textura
+    "materials/floor/brown_mud_leaves_01_",   // Segunda variación de textura
+  ], []);
 
-  floorTexture.map.wrapS = floorTexture.map.wrapT = RepeatWrapping;
-  floorTexture.map.repeat.set(100,100)
+  // Cargar todas las texturas en un array
+  const floorTextures = PATHS.map(PATH => useTexture({
+    map: PATH + "diff_1k.jpg",
+    normalMap: PATH + "nor_gl_1k.jpg",
+    roughnessMap: PATH + "rough_1k.jpg",
+    aoMap: PATH + "ao_1k.jpg",
+  }));
 
-  floorTexture.aoMap.wrapS = floorTexture.aoMap.wrapT = RepeatWrapping;
-  floorTexture.aoMap.repeat.set(100,100)
+  // Configuración de las texturas para repetirse
+  floorTextures.forEach(textureSet => {
+    textureSet.map.wrapS = textureSet.map.wrapT = RepeatWrapping;
+    textureSet.map.repeat.set(14, 14);  // Ajusta según tu necesidad
 
-  floorTexture.normalMap.wrapS = floorTexture.normalMap.wrapT = RepeatWrapping;
-  floorTexture.normalMap.repeat.set(100,100)
+    textureSet.aoMap.wrapS = textureSet.aoMap.wrapT = RepeatWrapping;
+    textureSet.aoMap.repeat.set(14, 14);
 
-  floorTexture.roughnessMap.wrapS = floorTexture.roughnessMap.wrapT = RepeatWrapping;
-  floorTexture.roughnessMap.repeat.set(100,100)
+    textureSet.normalMap.wrapS = textureSet.normalMap.wrapT = RepeatWrapping;
+    textureSet.normalMap.repeat.set(14, 14);
 
-  floorTexture.displacementMap.wrapS = floorTexture.displacementMap.wrapT = RepeatWrapping;
-  floorTexture.displacementMap.repeat.set(100,100)
+    textureSet.roughnessMap.wrapS = textureSet.roughnessMap.wrapT = RepeatWrapping;
+    textureSet.roughnessMap.repeat.set(14, 14);
+  });
+
+  const sections = 10;  // Número de subdivisiones del suelo
 
   return (
-    <RigidBody type="fixed" friction={0.65} restitution={0.2} position={[0, 0, 0]} > {/* Asegúrate de ajustar la altura si es necesario */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[100, 100]} />
-        <meshStandardMaterial 
-        map={floorTexture.map}
-        normalMap={floorTexture.map}
-        displacementMap={floorTexture.map}
-        roughnessMap={floorTexture.map}
-        aoMap={floorTexture.map}
-        roughness={0.001}
-        />
-      </mesh>
-    </RigidBody>
+    <>
+      {Array.from({ length: sections }, (_, i) => (
+        <RigidBody key={i} type="fixed" friction={0.65} restitution={0.2}>
+          <mesh
+            rotation={[-Math.PI / 2, 0, 0]}
+            position={[0,0,0]}
+            receiveShadow
+          >
+            <planeGeometry args={[100, 100]} />
+            <meshStandardMaterial
+              map={floorTextures[i % floorTextures.length].map}  // Textura aleatoria
+              normalMap={floorTextures[i % floorTextures.length].normalMap}
+              roughnessMap={floorTextures[i % floorTextures.length].roughnessMap}
+              aoMap={floorTextures[i % floorTextures.length].aoMap}
+              roughness={1}
+              metalness={0.1}
+            />
+          </mesh>
+        </RigidBody>
+      ))}
+    </>
   );
 };
 
 export default Floor;
+
 

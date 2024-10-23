@@ -2,6 +2,7 @@ import { useRef, useMemo } from "react";
 import { useGraph, useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
+import { RigidBody } from "@react-three/rapier";
 
 function TestDummy3d(props) {
   const { scene } = useGLTF("/models-3d/scene.gltf");
@@ -11,6 +12,7 @@ function TestDummy3d(props) {
   const groupRef = useRef(null);
 
   return (
+    <RigidBody colliders="cuboid">
     <group {...props} dispose={null} ref={groupRef}>
       <group position={[10, 1.4, 25]} rotation={[1, 5, 1]} scale={0.1}>
         <primitive object={nodes._rootJoint} />
@@ -23,6 +25,7 @@ function TestDummy3d(props) {
         </group>
       </group>
     </group>
+    </RigidBody>
   );
 }
 

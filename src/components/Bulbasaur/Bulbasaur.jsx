@@ -1,5 +1,7 @@
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
+import { RigidBody } from '@react-three/rapier';
+
 
 const Bulbasaur = ({ position = [0, 0, 0], ...props }) => {
   const { nodes, materials } = useGLTF('models-3d/Bulbasaur.glb')
@@ -36,9 +38,11 @@ const Bulbasaur = ({ position = [0, 0, 0], ...props }) => {
   ];
 
 return (
+  <RigidBody type="fixed">
     <group position={position} {...props}>
       {bulbasaurObjects}
     </group>
+    </RigidBody>
   );
 };
 

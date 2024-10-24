@@ -14,7 +14,7 @@ function TestDummy3d(props) {
   return (
     <RigidBody colliders="cuboid">
     <group {...props} dispose={null} ref={groupRef}>
-      <group position={[10, 1.4, 25]} rotation={[1, 5, 1]} scale={0.1}>
+      <group position={[95, 1.4, 25]} rotation={[1, 5, 1]} scale={0.1}>
         <primitive object={nodes._rootJoint} />
         <group position={[0, 1, 0]} scale={1}>
           <mesh

@@ -5,559 +5,209 @@ import * as THREE from 'three';
 
 export function NatureItems(props) {
   const { nodes, materials } = useGLTF('models-3d/natureItems.glb')
+
+// Árboles pino
+const arbolPinoPosiciones = [
+  [-35, 0, 45], [40, 0, -50], [-45, 0, -15], [5, 0, 40], [-20, 0, -40], 
+  [30, 0, -35], [45, 0, 15], [-5, 0, -45], [20, 0, -30], [-40, 0, 5],
+  [10, 0, 40], [-35, 0, -25], [15, 0, -45], [5, 0, -35]
+];
+
+// Árboles normales
+const arbolNormalPosiciones = [
+  [25, 0, 30], [-30, 0, 20], [10, 0, -35], [-20, 0, -20], [35, 0, 25],
+  [-15, 0, 40], [25, 0, -20], [5, 0, 45], [50, 0, -30], [0, 0, -50],
+  [-25, 0, 35], [15, 0, -45], [40, 0, -10], [-40, 0, 10]
+];
+
+// Flores
+const florPosiciones = [
+  [-15, 0, 30], [12, 0, -18], [40, 0, 15], [5, 0, 25], [-30, 0, -25],
+  [18, 0, 35], [-20, 0, 10], [25, 0, -15], [-12, 0, 22], [8, 0, -8],
+  [18, 0, -12], [-8, 0, 5]
+];
+
+// Hierba
+const hierbaPosiciones = [
+  [-35, 0, 35], [25, 0, -25], [-30, 0, -5], [20, 0, 25], [-15, 0, 15],
+  [10, 0, -30], [5, 0, 20], [-25, 0, 10], [30, 0, -15], [8, 0, -8],
+  [-5, 0, -35], [18, 0, 10], [0, 0, 15], [-10, 0, 25], [22, 0, -22],
+  [-18, 0, -15], [10, 0, 5], [15, 0, 35], [-25, 0, 30]
+];
+
+// Troncos en pie
+const troncoPosiciones = [
+  [30, 0, 25], [-15, 0, 15], [5, 0, -20],
+];
+
+// Troncos caídos
+const troncoCaidoPosiciones = [
+  [-40, 0, -35], [15, 0, -25], [-10, 0, 40], 
+];
+
+// Rocas
+const rocaPosiciones = [
+  [2, 0, 3], [12, 0, -18], [-10, 0, 20], [25, 0, -15], [18, 0, 28],
+  [-20, 0, -10], [5, 0, -5], [30, 0, 20], [-15, 0, 35],
+  [-22, 0, 22], [15, 0, -12], [5, 0, -25]
+];
+
+
+  const arbolSeco2Posiciones = [
+  ];
+
+  const arbolSecoPosiciones = [
+  ];
+
+
+
   return (
     <group {...props} dispose={null}>
-      <group position={[25,0,50]} scale={0.5}>
-        <mesh
+
+      {arbolPinoPosiciones.map((posicion, index) => (
+        <group key={`arbol-pino-${index}`} position={posicion} scale={0.5 + Math.random() * 0.2}>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Cylinder003_1.geometry}
+            material={materials.tree}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Cylinder003_2.geometry}
+            material={new THREE.MeshStandardMaterial({ color: '#4a901e' })}
+          />
+        </group>
+      ))}
+
+      {arbolNormalPosiciones.map((posicion, index) => (
+        <group key={`arbol-normal-${index}`} position={posicion} scale={8 + Math.random() * 0.5}>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Plane001_1.geometry}
+            material={materials.look}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Plane001_2.geometry}
+            material={new THREE.MeshStandardMaterial({ color: "#58a528" })}
+          />
+        </group>
+      ))}
+
+
+      {florPosiciones.map((posicion, index) => (
+        <group key={`flor-${index}`} position={posicion} rotation={[0, Math.random() * Math.PI * 2, 0]} scale={0.05 + Math.random() * 0.02}>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Cube014_1.geometry}
+            material={new THREE.MeshStandardMaterial({ color: 'green' })}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Cube014_2.geometry}
+            material={materials.oreng}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Cube014_3.geometry}
+            material={materials['Material.003']}
+          />
+        </group>
+      ))}
+
+
+      {hierbaPosiciones.map((posicion, index) => (
+        <mesh key={`hierba-${index}`} position={posicion} rotation={[0, Math.random() * Math.PI * 2, 0]} scale={0.05 + Math.random() * 0.02}
           castShadow
           receiveShadow
-          geometry={nodes.Cylinder003_1.geometry}
-          material={materials.tree}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder003_2.geometry}
-          material={new THREE.MeshStandardMaterial({ color: '#4a901e' })}
-        />
-      </group>
-      <group position={[27,0,18]} scale={0.5}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder003_1.geometry}
-          material={materials.tree}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder003_2.geometry}
-          material={new THREE.MeshStandardMaterial({ color: '#4a901e' })}
-        />
-      </group>
-      <group position={[37,0,10]} scale={0.5}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder003_1.geometry}
-          material={materials.tree}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder003_2.geometry}
-          material={new THREE.MeshStandardMaterial({ color: '#4a901e' })}
-        />
-      </group>
-      <group position={[45,0,2]} scale={0.5}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder003_1.geometry}
-          material={materials.tree}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder003_2.geometry}
-          material={new THREE.MeshStandardMaterial({ color: '#4a901e' })}
-        />
-      </group>
-      <group position={[45,0,27]} scale={0.5}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder003_1.geometry}
-          material={materials.tree}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder003_2.geometry}
-          material={new THREE.MeshStandardMaterial({ color: '#4a901e' })}
-        />
-      </group>
-      <group position={[-14,0,36]} scale={0.5}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder003_1.geometry}
-          material={materials.tree}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder003_2.geometry}
-          material={new THREE.MeshStandardMaterial({ color: '#4a901e' })}
-        />
-      </group>
-      <group position={[10,0,20]} scale={0.5}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder003_1.geometry}
-          material={materials.tree}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder003_2.geometry}
-          material={new THREE.MeshStandardMaterial({ color: '#4a901e' })}
-        />
-      </group>
-      <group position={[16, 0, 1]} scale={0.5}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder004.geometry}
-          material={materials.tree}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder004_1.geometry}
-          material={new THREE.MeshStandardMaterial({ color: "#438519" })}
-        />
-      </group>
-      <group position={[46, 0, 1]} scale={0.5}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder004.geometry}
-          material={materials.tree}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder004_1.geometry}
-          material={new THREE.MeshStandardMaterial({ color: "#438519" })}
-        />
-      </group>
-      <group
-        position={[4, 0, 4]}
-        rotation={[-Math.PI, 1.516, -Math.PI]}
-        scale={0.05}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube014_1.geometry}
+          geometry={nodes.Cube002.geometry}
           material={new THREE.MeshStandardMaterial({ color: 'green' })}
         />
+      ))}
+
+
+      {arbolSecoPosiciones.map((posicion, index) => (
         <mesh
+          key={`arbol-seco-${index}`}
           castShadow
           receiveShadow
-          geometry={nodes.Cube014_2.geometry}
-          material={materials.oreng}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube014_3.geometry}
-          material={materials['Material.003']}
-        />
-      </group>
-      <group
-        position={[3, 0, 0]}
-        rotation={[Math.PI, -0.005, Math.PI]}
-        scale={0.05}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube001_1.geometry}
-          material={new THREE.MeshStandardMaterial({ color: 'green' })}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube001_2.geometry}
-          material={materials.oreng}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube001_3.geometry}
-          material={materials['Material.003']}
-        />
-      </group>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube002.geometry}
-        material={new THREE.MeshStandardMaterial({ color: 'green' })}
-        position={[6, 0, 8]}
-        rotation={[-3.099, 1.458, 3.05]}
-        scale={0.05}
-      />
-      <group position={[9, 0, 4]} rotation={[0, -1.164, 0]} scale={0.05}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube003_1.geometry}
-          material={new THREE.MeshStandardMaterial({ color: 'green' })}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube003_2.geometry}
-          material={materials.oreng}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube003_3.geometry}
-          material={materials['Material.003']}
-        />
-      </group>
-      <group position={[-20, 0, 18]} rotation={[0, 0.356, 0]} scale={0.05}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube004_1.geometry}
-          material={new THREE.MeshStandardMaterial({ color: 'green' })}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube004_2.geometry}
-          material={materials.oreng}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube004_3.geometry}
-          material={materials['Material.003']}
-        />
-      </group>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube005.geometry}
-        material={new THREE.MeshStandardMaterial({ color: 'green' })}
-        position={[-4, 0, 0]}
-        rotation={[-3.099, 1.458, 3.05]}
-        scale={0.05}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Plane001.geometry}
-        material={materials.tree}
-        position={[-15, 0, 0]}
-        rotation={[0, -1.491, 0]}
-        scale={1}
-      />
-      <group position={[6, 0, 3]} scale={1}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder_1.geometry}
+          geometry={nodes.Plane001.geometry}
           material={materials.tree}
+          position={posicion}
+          rotation={[0, Math.random() * Math.PI * 2, 0]}
+          scale={12 + Math.random() * 2}
         />
+      ))}
+
+      {troncoPosiciones.map((posicion, index) => (
+        <group key={`tronco-${index}`} position={posicion} scale={1 + Math.random() * 0.1}>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Cylinder_1.geometry}
+            material={materials.tree}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Cylinder_2.geometry}
+            material={materials['tree 2']}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Cylinder_3.geometry}
+            material={materials['tree 3']}
+          />
+        </group>
+      ))}
+
+      {troncoCaidoPosiciones.map((posicion, index) => (
+        <group key={`tronco-caido-${index}`} position={posicion} rotation={[0, Math.random() * Math.PI * 2, 0]} scale={1 + Math.random() * 0.1}>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Cylinder001_1.geometry}
+            material={materials.tree}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Cylinder001_2.geometry}
+            material={materials['tree 2']}
+          />
+        </group>
+      ))}
+
+
+      {arbolSeco2Posiciones.map((posicion, index) => (
         <mesh
+          key={`arbol-seco2-${index}`}
           castShadow
           receiveShadow
-          geometry={nodes.Cylinder_2.geometry}
-          material={materials['tree 2']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder_3.geometry}
-          material={materials['tree 3']}
-        />
-      </group>
-      <group position={[-18, 0, 0]} scale={1}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder001_1.geometry}
+          geometry={nodes.Plane003.geometry}
           material={materials.tree}
+          position={posicion}
+          scale={8 + Math.random() * 0.5}
         />
-        <mesh
+      ))}
+
+      {rocaPosiciones.map((posicion, index) => (
+        <mesh key={`roca-${index}`} position={posicion} rotation={[0, Math.random() * Math.PI * 2, Math.random() * 0.1]} scale={2 + Math.random() * 0.5}
           castShadow
           receiveShadow
-          geometry={nodes.Cylinder001_2.geometry}
-          material={materials['tree 2']}
+          geometry={nodes.Icosphere001.geometry}
+          material={materials.Material}
         />
-      </group>
-      <group position={[-20, 0, -20]} scale={8}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane001_1.geometry}
-          material={materials.look}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane001_2.geometry}
-          material={new THREE.MeshStandardMaterial({ color: "#58a528" })}
-        />
-      </group>
-      <group position={[-10, 0, -25]} scale={8}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane001_1.geometry}
-          material={materials.look}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane001_2.geometry}
-          material={new THREE.MeshStandardMaterial({ color: "#58a528" })}
-        />
-      </group>
-      <group position={[-19, 0, -4]} scale={8}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane001_1.geometry}
-          material={materials.look}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane001_2.geometry}
-          material={new THREE.MeshStandardMaterial({ color: "#58a528" })}
-        />
-      </group>
-      <group position={[-8, 0, 20]} scale={8}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane001_1.geometry}
-          material={materials.look}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane001_2.geometry}
-          material={new THREE.MeshStandardMaterial({ color: "#58a528" })}
-        />
-      </group>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Plane003.geometry}
-        material={materials.tree}
-        position={[7, 0, -5]}
-        scale={8}
-      />
-      <group
-        position={[-7, 0, -20]}
-        rotation={[-Math.PI, 1.516, -Math.PI]}
-        scale={0.05}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube006_1.geometry}
-          material={new THREE.MeshStandardMaterial({ color: 'green' })}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube006_2.geometry}
-          material={materials.oreng}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube006_3.geometry}
-          material={materials['Material.003']}
-        />
-      </group>
-      <group
-        position={[-29, 0, 6]}
-        rotation={[-Math.PI, 1.516, -Math.PI]}
-        scale={0.05}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube007_1.geometry}
-          material={new THREE.MeshStandardMaterial({ color: 'green' })}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube007_2.geometry}
-          material={materials.oreng}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube007_3.geometry}
-          material={materials['Material.003']}
-        />
-      </group>
-      <group
-        position={[4, 0, -8]}
-        rotation={[-Math.PI, 1.516, -Math.PI]}
-        scale={0.05}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube008_1.geometry}
-          material={new THREE.MeshStandardMaterial({ color: 'green' })}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube008_2.geometry}
-          material={materials.oreng}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube008_3.geometry}
-          material={materials['Material.003']}
-        />
-      </group>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Icosphere.geometry}
-        material={materials.Material}
-        position={[14, 0, 50]}
-        rotation={0.05}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Icosphere001.geometry}
-        material={materials.Material}
-        position={[1, 0, 1]}
-        rotation={[0, 0.099, 0.017]}
-        scale={1}
-      />
-      <group
-        position={[3, 0, 3]}
-        rotation={[-Math.PI, 1.516, -Math.PI]}
-        scale={0.05}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube009_1.geometry}
-          material={new THREE.MeshStandardMaterial({ color: 'green' })}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube009_2.geometry}
-          material={materials.oreng}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube009_3.geometry}
-          material={materials['Material.003']}
-        />
-      </group>
-      <group
-        position={[4, 0, 4]}
-        rotation={[-Math.PI, 1.516, -Math.PI]}
-        scale={0.05}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube010_1.geometry}
-          material={new THREE.MeshStandardMaterial({ color: 'green' })}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube010_2.geometry}
-          material={materials.oreng}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube010_3.geometry}
-          material={materials['Material.003']}
-        />
-      </group>
-      <group
-        position={[6, 0, -6]}
-        rotation={[-Math.PI, 1.516, -Math.PI]}
-        scale={0.05}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube011_1.geometry}
-          material={new THREE.MeshStandardMaterial({ color: 'green' })}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube011_2.geometry}
-          material={materials.oreng}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube011_3.geometry}
-          material={materials['Material.003']}
-        />
-      </group>
-      <group
-        position={[-6, 0, -6]}
-        rotation={[-Math.PI, 1.516, -Math.PI]}
-        scale={0.05}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube012_1.geometry}
-          material={new THREE.MeshStandardMaterial({ color: 'green' })}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube012_2.geometry}
-          material={materials.oreng}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube012_3.geometry}
-          material={materials['Material.003']}
-        />
-      </group>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube014.geometry}
-        material={new THREE.MeshStandardMaterial({ color: 'green' })}
-        position={[-4, 0, 4]}
-        rotation={[-3.099, 1.458, 3.05]}
-        scale={0.05}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube015.geometry}
-        material={new THREE.MeshStandardMaterial({ color: 'green' })}
-        position={[-5, 0, 5]}
-        rotation={[-3.099, 1.458, 3.05]}
-        scale={0.05}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube016.geometry}
-        material={new THREE.MeshStandardMaterial({ color: 'green' })}
-        position={[-8, 0, 6]}
-        rotation={[-3.099, 1.458, 3.05]}
-        scale={0.05}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube017.geometry}
-        material={new THREE.MeshStandardMaterial({ color: 'green' })}
-        position={[-11, 0, 11]}
-        rotation={[-3.099, 1.458, 3.05]}
-        scale={0.05}
-      />
+      ))}
+
     </group>
   )
 }

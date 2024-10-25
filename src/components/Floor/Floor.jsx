@@ -43,7 +43,7 @@ const Floor = () => {
             position={[0,0,0]}
             receiveShadow
           >
-            <planeGeometry args={[100, 100]} />
+            <circleGeometry args={[100, 100]} />
             <meshStandardMaterial
               map={floorTextures[i % floorTextures.length].map}  // Textura aleatoria
               normalMap={floorTextures[i % floorTextures.length].normalMap}

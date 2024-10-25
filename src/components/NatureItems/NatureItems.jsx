@@ -47,7 +47,7 @@ const troncoCaidoPosiciones = [
 
 // Rocas
 const rocaPosiciones = [
-  [2, 0, 3], [12, 0, -18], [-10, 0, 20], [25, 0, -15], [18, 0, 28],
+  [12, 0, -18], [-10, 0, 20], [25, 0, -15], [18, 0, 28],
   [-20, 0, -10], [5, 0, -5], [30, 0, 20], [-15, 0, 35],
   [-22, 0, 22], [15, 0, -12], [5, 0, -25]
 ];
@@ -65,7 +65,7 @@ const rocaPosiciones = [
     <group {...props} dispose={null}>
 
       {arbolPinoPosiciones.map((posicion, index) => (
-        <group key={`arbol-pino-${index}`} position={posicion} scale={0.5 + Math.random() * 0.2}>
+        <group key={`arbol-pino-${index}`} position={posicion} scale={0.2 + Math.random() * 0.2}>
           <mesh
             castShadow
             receiveShadow
@@ -82,7 +82,7 @@ const rocaPosiciones = [
       ))}
 
       {arbolNormalPosiciones.map((posicion, index) => (
-        <group key={`arbol-normal-${index}`} position={posicion} scale={8 + Math.random() * 0.5}>
+        <group key={`arbol-normal-${index}`} position={posicion} scale={7 + Math.random() * 1}>
           <mesh
             castShadow
             receiveShadow
@@ -100,7 +100,7 @@ const rocaPosiciones = [
 
 
       {florPosiciones.map((posicion, index) => (
-        <group key={`flor-${index}`} position={posicion} rotation={[0, Math.random() * Math.PI * 2, 0]} scale={0.05 + Math.random() * 0.02}>
+        <group key={`flor-${index}`} position={posicion} rotation={[0, Math.random() * Math.PI * 2, 0]} scale={0.03 + Math.random() * 0.04}>
           <mesh
             castShadow
             receiveShadow
@@ -124,7 +124,7 @@ const rocaPosiciones = [
 
 
       {hierbaPosiciones.map((posicion, index) => (
-        <mesh key={`hierba-${index}`} position={posicion} rotation={[0, Math.random() * Math.PI * 2, 0]} scale={0.05 + Math.random() * 0.02}
+        <mesh key={`hierba-${index}`} position={posicion} rotation={[0, Math.random() * Math.PI * 2, 0]} scale={0.03 + Math.random() * 0.04}
           castShadow
           receiveShadow
           geometry={nodes.Cube002.geometry}
@@ -142,12 +142,12 @@ const rocaPosiciones = [
           material={materials.tree}
           position={posicion}
           rotation={[0, Math.random() * Math.PI * 2, 0]}
-          scale={12 + Math.random() * 2}
+          scale={11 + Math.random() * 2}
         />
       ))}
 
       {troncoPosiciones.map((posicion, index) => (
-        <group key={`tronco-${index}`} position={posicion} scale={1 + Math.random() * 0.1}>
+        <group key={`tronco-${index}`} position={posicion} scale={0.8 + Math.random() * 0.1}>
           <mesh
             castShadow
             receiveShadow
@@ -170,7 +170,7 @@ const rocaPosiciones = [
       ))}
 
       {troncoCaidoPosiciones.map((posicion, index) => (
-        <group key={`tronco-caido-${index}`} position={posicion} rotation={[0, Math.random() * Math.PI * 2, 0]} scale={1 + Math.random() * 0.1}>
+        <group key={`tronco-caido-${index}`} position={posicion} rotation={[0, Math.random() * Math.PI * 2, 0]} scale={0.8 + Math.random() * 0.1}>
           <mesh
             castShadow
             receiveShadow
@@ -200,7 +200,7 @@ const rocaPosiciones = [
       ))}
 
       {rocaPosiciones.map((posicion, index) => (
-        <mesh key={`roca-${index}`} position={posicion} rotation={[0, Math.random() * Math.PI * 2, Math.random() * 0.1]} scale={2 + Math.random() * 0.5}
+        <mesh key={`roca-${index}`} position={posicion} rotation={[0, Math.random() * Math.PI * 2, Math.random() * 0.1]} scale={1 + Math.random() * 15}
           castShadow
           receiveShadow
           geometry={nodes.Icosphere001.geometry}

@@ -11,6 +11,14 @@ export function WoodenSings(props) {
   const handleNavigatetoPerdidaDiversidad = () => {
     navigate("/PerdidaDiversidad");
   };
+
+  const handleNavigatetoDeforestacion = () => {
+    navigate("/Deforestacion");
+  };
+
+  const handleNavigatetoErosionSuelo = () => {
+    navigate("/ErosionSuelo");
+  };
   return (
     <group {...props} dispose={null}>
         {/*Cartel pequeño
@@ -287,7 +295,7 @@ export function WoodenSings(props) {
       </group>
       */}
       {/*Cartel Cuadrado Grande*/}
-      <group position={[-11, 0, 10]} rotation={[0, 1.571, 0]} scale={[2,2,3]}>
+      <group position={[-11, 0, 10]} rotation={[0, 1.571, 0]} scale={[2,2,3]} onClick={handleNavigatetoErosionSuelo}>
         <mesh
           castShadow
           receiveShadow
@@ -314,7 +322,7 @@ export function WoodenSings(props) {
         />
       </group>
       {/*Cartel Cuadrado Grande*/}
-      <group position={[10, 0, 10]} rotation={[0, 1.571, 0]} scale={[2,2,3]}>
+      <group position={[10, 0, 10]} rotation={[0, 1.571, 0]} scale={[2,2,3]} onClick={handleNavigatetoDeforestacion}>
         <mesh
           castShadow
           receiveShadow

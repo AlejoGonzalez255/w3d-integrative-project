@@ -12,7 +12,7 @@ import House from "../../components/Lobby/House/House";
 import WoodenSings from "../../components/Lobby/WoodenSigns/WoodenSings";
 import { Float, Loader, Text } from "@react-three/drei";
 
-const World = () => {
+const Lobby = () => {
   const [ready, setReady] = useState(false);
 
   return (
@@ -56,5 +56,5 @@ const World = () => {
   );
 };
 
-export default World;
+export default Lobby;
 

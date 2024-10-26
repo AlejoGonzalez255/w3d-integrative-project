@@ -1,10 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login from "../pages/login/Login.jsx"; 
-import World from "../pages/Lobby/Lobby.jsx";
+import Lobby from "../pages/Lobby/Lobby.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
 import Home from "../pages/Home/Home.jsx";
 import PublicRoute from "./PublicRoute.jsx";
 import PerdidaDiversidad from "../pages/PerdidaDiversidad/PerdidaDiversidad.jsx";
+import Deforestacion from "../pages/Deforestacion/Deforestacion.jsx";
+import ErosionSuelo from "../pages/ErosionSuelo/ErosionSuelo.jsx";
 
 
 export const Router = createBrowserRouter([
@@ -26,10 +28,10 @@ export const Router = createBrowserRouter([
     ),
   },
   {
-    path: "/world",
+    path: "/Lobby",
     element: (
         <ProtectedRoute>
-            <World />
+            <Lobby/>
         </ProtectedRoute>
     ),
   },
@@ -38,6 +40,22 @@ export const Router = createBrowserRouter([
     element: (
         <ProtectedRoute>
             <PerdidaDiversidad />
+        </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/ErosionSuelo",
+    element: (
+        <ProtectedRoute>
+            <ErosionSuelo />
+        </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/Deforestacion",
+    element: (
+        <ProtectedRoute>
+            <Deforestacion />
         </ProtectedRoute>
     ),
   },

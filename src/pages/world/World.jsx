@@ -9,6 +9,7 @@ import { useState } from "react";
 import Lights from "../lights/Lights";
 import Staging from "../staging/Staging";
 import House from "../../components/House/House";
+import WoodenSings from "../../components/WoodenSigns/WoodenSings";
 
 const World = () => {
   const [ready, setReady] = useState(false);
@@ -24,6 +25,7 @@ const World = () => {
           <NatureItems/>
           <Floor />
           <House/>
+          <WoodenSings/>
         </Physics>
       </Canvas>
 

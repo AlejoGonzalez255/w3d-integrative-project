@@ -2,9 +2,15 @@
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { deflate } from 'three/examples/jsm/libs/fflate.module.js'
+import { useNavigate } from "react-router-dom";
 
 export function WoodenSings(props) {
   const { nodes, materials } = useGLTF('models-3d/WoodenSigns.glb')
+  const navigate = useNavigate();
+
+  const handleNavigatetoPerdidaDiversidad = () => {
+    navigate("/PerdidaDiversidad");
+  };
   return (
     <group {...props} dispose={null}>
         {/*Cartel pequeño
@@ -281,7 +287,7 @@ export function WoodenSings(props) {
       </group>
       */}
       {/*Cartel Cuadrado Grande*/}
-      <group position={[-5, 0, 10]} rotation={[0, 1.571, 0]}>
+      <group position={[-11, 0, 10]} rotation={[0, 1.571, 0]} scale={[2,2,3]}>
         <mesh
           castShadow
           receiveShadow
@@ -308,7 +314,7 @@ export function WoodenSings(props) {
         />
       </group>
       {/*Cartel Cuadrado Grande*/}
-      <group position={[3, 0, 10]} rotation={[0, 1.571, 0]}>
+      <group position={[10, 0, 10]} rotation={[0, 1.571, 0]} scale={[2,2,3]}>
         <mesh
           castShadow
           receiveShadow
@@ -335,7 +341,7 @@ export function WoodenSings(props) {
         />
       </group>
       {/*Cartel Cuadrado Grande*/}
-      <group position={[-1, 0, 10]} rotation={[0, 1.571, 0]}>
+      <group position={[0, 0, 10]} rotation={[0, 1.571, 0]} scale={[2,2,3]} onClick={handleNavigatetoPerdidaDiversidad}>
         <mesh
           castShadow
           receiveShadow

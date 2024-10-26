@@ -37,7 +37,7 @@ export default function Home() {
   }, [logout]);
 
   const handleNavigateToWorld = () => {
-    navigate("/world"); 
+    navigate("/Lobby"); 
   };
 
   return (

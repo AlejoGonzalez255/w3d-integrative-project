@@ -12,9 +12,15 @@ import House from "../../components/Lobby/House/House";
 import WoodenSings from "../../components/Lobby/WoodenSigns/WoodenSings";
 import { Loader, Text } from "@react-three/drei";
 import ButtonStart from "../../components/ButtonStart/ButtonStart";
+import ModalSummary from "../../components/Lobby/ModalSummary/ModalSummary";
+import useModalSummaryStore from "../../stores/use-modalSummary-state";
 
 const Lobby = () => {
   const [ready, setReady] = useState(false);
+
+  const { modalSummary, setModalSummary } = useModalSummaryStore();
+
+  console.log(modalSummary);
 
   return (
     <>
@@ -48,6 +54,7 @@ const Lobby = () => {
           </Text>
         </Suspense>
       </Canvas>
+      <ModalSummary show={modalSummary} onHide={() => setModalSummary(false)}/>
       <div
         onClick={() => setReady(true)}
         className={`fullscreen bg ${ready ? "ready" : "notready"} ${ready && "clicked"}`}

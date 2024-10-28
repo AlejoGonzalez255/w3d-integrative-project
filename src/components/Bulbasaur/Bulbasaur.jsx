@@ -29,6 +29,7 @@ const Bulbasaur = ({ ...props }) => {
         capsuleRadius={0.2}      // Ajustar el radio de la cápsula
         floatingDis={0}  // Ajustar la distancia de flotación a 0 para que esté pegado al suelo
         speed={7}
+        position={[0, 70, 0]}
       >
         <group position={[0, -0.2, 0]} dispose={null}>
           <mesh castShadow receiveShadow geometry={nodes.Plane_1.geometry} material={materials.Skin} />

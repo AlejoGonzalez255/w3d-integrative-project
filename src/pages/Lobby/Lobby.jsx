@@ -24,18 +24,18 @@ const Lobby = () => {
 
   return (
     <>
-      <Canvas>
+      <Canvas shadows={true}>
         <Suspense fallback={null}>
 
-          <Lights/>
-          <Staging/>
+          <Lights />
+          <Staging />
           <Physics gravity={[0, -9.81, 0]} timeStep="vary" debug={true}>
-            <Bulbasaur/> 
+            <Bulbasaur />
             <TestDummy3d />
-            <NatureItems/>
+            <NatureItems />
             <Floor />
-            <House/>
-            <WoodenSings/>
+            <House />
+            <WoodenSings />
           </Physics>
           <Text position={[0, 6.5, 10]} rotation={[0, -3.15, 0]} color={"black"}>
             {"Bienvenido a ECOEARTH!"}
@@ -54,13 +54,13 @@ const Lobby = () => {
           </Text>
         </Suspense>
       </Canvas>
-      <ModalSummary show={modalSummary} onHide={() => setModalSummary(false)}/>
+      <ModalSummary show={modalSummary} onHide={() => setModalSummary(false)} />
       <div
         onClick={() => setReady(true)}
         className={`fullscreen bg ${ready ? "ready" : "notready"} ${ready && "clicked"}`}
       >
         <ButtonStart />
-      <Loader />
+        <Loader />
       </div>
     </>
   );

@@ -13,7 +13,7 @@ const PerdidaDiversidad = () => {
     const [ready, setReady] = useState(false);
     return (
         <>
-        <Canvas>
+        <Canvas shadows>
         <Lights/>
         <Staging/>
         <Physics gravity={[0, -9.81, 0]} timeStep="vary" debug={true}>

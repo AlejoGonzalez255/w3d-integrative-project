@@ -30,12 +30,12 @@ const Lobby = () => {
           <Lights />
           <Staging />
           <Physics gravity={[0, -9.81, 0]} timeStep="vary" debug={true}>
-            <Bulbasaur />
             <TestDummy3d />
             <NatureItems />
             <Floor />
             <House />
             <WoodenSings />
+            <Bulbasaur position={[0,4,0]} />
           </Physics>
           <Text position={[0, 6.5, 10]} rotation={[0, -3.15, 0]} color={"black"}>
             {"Bienvenido a ECOEARTH!"}

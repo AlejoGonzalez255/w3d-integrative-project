@@ -17,9 +17,9 @@ const PerdidaDiversidad = () => {
         <Lights/>
         <Staging/>
         <Physics gravity={[0, -9.81, 0]} timeStep="vary" debug={true}>
-          <Bulbasaur/> 
           <DestroyedNature/>
           <Floor />
+          <Bulbasaur/> 
         </Physics>
 
       </Canvas>

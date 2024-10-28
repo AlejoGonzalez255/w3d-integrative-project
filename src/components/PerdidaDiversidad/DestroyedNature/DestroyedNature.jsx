@@ -32,7 +32,7 @@ const troncoPosiciones = [
 
 // Troncos caídos
 const troncoCaidoPosiciones = [
-  [-40, 0, -35], [15, 0, -25], [-10, 0, 40], 
+  [-40, 0, -35], [15, 0, -25],  
 ];
 
 // Rocas
@@ -179,7 +179,7 @@ const rocaPosiciones = [
             geometry={nodes.Cylinder001_2.geometry}
             material={materials['tree 2']}
           />
-        </group>
+        </group> 
       ))}
 
 

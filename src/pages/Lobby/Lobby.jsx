@@ -1,42 +1,69 @@
 import "./Lobby.css";
 import { Canvas } from "@react-three/fiber";
-import TestDummy3d from "../../components/Lobby/TestDummy/TestDummy3d";
+import { Physics } from "@react-three/rapier";
+import { Perf } from 'r3f-perf'
+import { Suspense, useState } from "react";
+import { KeyboardControls } from "@react-three/drei";
+import Ecctrl, { EcctrlAnimation } from "ecctrl";
+
+import Lights from "../../components/lights/Lights";
+import Staging from "../../components/staging/Staging";
 import Floor from "../../components/Lobby/Floor/Floor";
 import NatureItems from "../../components/Lobby/NatureItems/NatureItems";
 import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
-import { Physics } from "@react-three/rapier";
-import { Suspense, useState } from "react";
-import Lights from "../../components/lights/Lights";
-import Staging from "../../components/staging/Staging";
+import TestDummy3d from "../../components/Lobby/TestDummy/TestDummy3d";
 import House from "../../components/Lobby/House/House";
 import WoodenSings from "../../components/Lobby/WoodenSigns/WoodenSings";
-import { Loader, Text } from "@react-three/drei";
+import { Text, Loader } from "@react-three/drei";
 import ButtonStart from "../../components/ButtonStart/ButtonStart";
 import ModalSummary from "../../components/Lobby/ModalSummary/ModalSummary";
 import useModalSummaryStore from "../../stores/use-modalSummary-state";
 
 const Lobby = () => {
   const [ready, setReady] = useState(false);
-
   const { modalSummary, setModalSummary } = useModalSummaryStore();
 
-  console.log(modalSummary);
+  // Mapeo de controles de teclado
+  const keyboardMap = [
+    { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
+    { name: 'backward', keys: ['ArrowDown', 'KeyS'] },
+    { name: 'leftward', keys: ['ArrowLeft', 'KeyA'] },
+    { name: 'rightward', keys: ['ArrowRight', 'KeyD'] },
+    { name: 'jump', keys: ['Space'] },
+    { name: 'run', keys: ['Shift'] },
+  ];
+
+  // Animaciones de Bulbasaur
+  const animationSet = {
+    idle: "idle",
+    walk: "walk",
+    run: "run",
+    jump: "Jump_Start",
+    jumpIdle: "Jump_Idle",
+    jumpLand: "Jump_Land",
+    fall: "Fall",
+  };
 
   return (
     <>
       <Canvas shadows={true}>
-        <Suspense fallback={null}>
-
           <Lights />
           <Staging />
-          <Physics gravity={[0, -9.81, 0]} timeStep="vary" debug={true}>
-            <Floor />
-            <TestDummy3d />
+          <Perf position="top-left" minimal />
+        <Suspense fallback={null}>
+          <Physics timeStep="vary" debug={true}>
             <NatureItems />
-            <Floor />
             <House />
             <WoodenSings />
-            <Bulbasaur />
+            <TestDummy3d />
+            <KeyboardControls map={keyboardMap}>
+              <Ecctrl animated debug>
+                <EcctrlAnimation characterURL="models-3d/Bulbasaur2.glb" animationSet={animationSet}>
+                  <Bulbasaur />
+                </EcctrlAnimation>
+              </Ecctrl>
+            </KeyboardControls>
+            <Floor />
           </Physics>
           <Text position={[0, 6.5, 10]} rotation={[0, -3.15, 0]} color={"black"}>
             {"Bienvenido a ECOEARTH!"}
@@ -68,4 +95,5 @@ const Lobby = () => {
 };
 
 export default Lobby;
+
 

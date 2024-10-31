@@ -11,7 +11,7 @@ export default function FloorPerdidaDiversidad(props){
       {...props}          
     >
       <mesh
-        position={[0,-5, 0]}
+        position={[0, -5, 0]}
         receiveShadow={true}
       >
         <cylinderGeometry args={[100, 50, 10, 32]} />
@@ -20,4 +20,5 @@ export default function FloorPerdidaDiversidad(props){
     </RigidBody>
   );
 };
+
 

@@ -1,26 +1,24 @@
 import { RigidBody } from "@react-three/rapier";
 
-const Floor = () => {
+export default function Floor(props){
   return (
-    <>
-        <RigidBody type="fixed" friction={0.65} restitution={0.2}>
-          <mesh
-            rotation={[-Math.PI / 2, 0, 0]}
-            position={[0,0,0]}
-            receiveShadow
-          >
-            <circleGeometry args={[100, 100]} />
-            <meshStandardMaterial
-              color="#228B22"  
-              roughness={1}
-              metalness={0.1}
-            />
-          </mesh>
-        </RigidBody>
-    </>
+    <RigidBody
+      type="fixed"
+      colliders="trimesh"    
+      ccd                
+      friction={0.65}
+      restitution={0.2}
+      {...props}          
+    >
+      <mesh
+        position={[0,-5, 0]}
+        receiveShadow={true}
+      >
+        <cylinderGeometry args={[100, 50, 10, 32]} />
+        <meshStandardMaterial color="#228B22" />
+      </mesh>
+    </RigidBody>
   );
 };
-
-export default Floor;
 
 

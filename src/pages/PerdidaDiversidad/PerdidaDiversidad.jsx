@@ -6,7 +6,7 @@ import { Suspense, useState } from "react";
 import { KeyboardControls } from "@react-three/drei";
 import Ecctrl, { EcctrlAnimation } from "ecctrl";
 
-import FloorPerdidaDiversidad from "../../components/PerdidaDiversidad/FloorPerdidaDiversidad/FloorPerdidaDiversidad";
+import Floor from "../../components/PerdidaDiversidad/Floor/Floor";
 import DestroyedNature from "../../components/PerdidaDiversidad/DestroyedNature/DestroyedNature";
 import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
 import Lights from "../../components/lights/Lights";
@@ -44,6 +44,7 @@ const PerdidaDiversidad = () => {
           <Perf position="top-left" minimal />
         <Suspense fallback={null}>
           <Physics timeStep="vary" debug={true}>
+            <DestroyedNature/>
             <KeyboardControls map={keyboardMap}>
               <Ecctrl animated scale={2} capsuleHalfHeight={0.05} capsuleRadius={0.2}>
                 <EcctrlAnimation characterURL="models-3d/Bulbasaur.glb" animationSet={animationSet}>
@@ -51,7 +52,7 @@ const PerdidaDiversidad = () => {
                 </EcctrlAnimation>
               </Ecctrl>
             </KeyboardControls>
-            <FloorPerdidaDiversidad/>
+            <Floor/>
           </Physics>
         </Suspense>
       </Canvas>

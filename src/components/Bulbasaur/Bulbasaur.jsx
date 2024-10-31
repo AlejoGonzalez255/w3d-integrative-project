@@ -1,15 +1,16 @@
 import React from 'react'
-import { useGLTF} from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 
-
-const Bulbasaur = ({ ...props }) => {
-  const { nodes, materials } = useGLTF('models-3d/Bulbasaur2.glb')
+export default function CharacterModel(props) {
+  const { nodes, materials } = useGLTF('models-3d/Bulbasaur.glb')
 
   return (
-
-    <group scale={0.01} position={[0,-0.25,0]} rotation={[0,0,0]}>
+    <group {...props} dispose={null} scale={0.007} position={[0,-0.25,0]}>
       <group name="Scene">
-        <group name="pm0001_00">
+        <group name="CharacterArmature">
+          <group name="Bulbasaur72" rotation={[-Math.PI / 2, 0, 0]} />
+          <group name="Bulbasaur_LVine73" rotation={[-Math.PI / 2, 0, 0]} />
+          <group name="Bulbasaur_RVine74" rotation={[-Math.PI / 2, 0, 0]} />
           <skinnedMesh
             name="Mesh_0"
             geometry={nodes.Mesh_0.geometry}
@@ -50,8 +51,7 @@ const Bulbasaur = ({ ...props }) => {
         </group>
       </group>
     </group>
-  );
-};
+  )
+}
 
-useGLTF.preload("models-3d/Bulbasaur2.glb");
-export default Bulbasaur;
+useGLTF.preload('models-3d/Bulbasaur.glb')

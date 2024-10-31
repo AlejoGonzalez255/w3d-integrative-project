@@ -1,6 +1,6 @@
 import { RigidBody } from "@react-three/rapier";
 
-const Floor = (props) => {
+export default function Floor(props){
   return (
     <RigidBody
       type="fixed"
@@ -12,17 +12,16 @@ const Floor = (props) => {
     >
       <mesh
         rotation={[-Math.PI / 2, 0, 0]}
-        position={[0, 0, 0]}
+        position={[0,-5, 0]}
         receiveShadow={true}
       >
-        <circleGeometry args={[100, 100]} />
+        <boxGeometry args={[100,100,10]} />
         <meshStandardMaterial color="#228B22" />
       </mesh>
     </RigidBody>
   );
 };
 
-export default Floor;
 
 
 

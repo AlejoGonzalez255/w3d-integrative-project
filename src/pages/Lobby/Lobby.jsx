@@ -57,7 +57,7 @@ const Lobby = () => {
             <WoodenSings />
             <TestDummy3d />
             <KeyboardControls map={keyboardMap}>
-              <Ecctrl animated debug scale={2} capsuleHalfHeight={0.05} capsuleRadius={0.2}>
+              <Ecctrl animated scale={2} capsuleHalfHeight={0.05} capsuleRadius={0.2}>
                 <EcctrlAnimation characterURL="models-3d/Bulbasaur.glb" animationSet={animationSet}>
                   <Bulbasaur />
                 </EcctrlAnimation>

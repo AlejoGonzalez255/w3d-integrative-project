@@ -4,18 +4,17 @@ export default function Floor(props){
   return (
     <RigidBody
       type="fixed"
-      colliders="cuboid"    
+      colliders="trimesh"    
       ccd                
       friction={0.65}
       restitution={0.2}
       {...props}          
     >
       <mesh
-        rotation={[-Math.PI / 2, 0, 0]}
         position={[0,-5, 0]}
         receiveShadow={true}
       >
-        <boxGeometry args={[100,100,10]} />
+        <cylinderGeometry args={[100, 50, 10, 32]} />
         <meshStandardMaterial color="#228B22" />
       </mesh>
     </RigidBody>

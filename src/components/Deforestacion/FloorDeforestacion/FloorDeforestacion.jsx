@@ -1,6 +1,6 @@
 import { RigidBody } from "@react-three/rapier";
 
-export default function FloorPerdidaDiversidad(props){
+export default function FloorDeforestacion(props){
   return (
     <RigidBody
       type="fixed"
@@ -11,11 +11,11 @@ export default function FloorPerdidaDiversidad(props){
       {...props}          
     >
       <mesh
-        position={[0, -5, 0]}
+        position={[0,-5, 0]}
         receiveShadow={true}
       >
         <cylinderGeometry args={[100, 50, 10, 32]} />
-        <meshStandardMaterial color="#DFCD59" />
+        <meshStandardMaterial color="#228B22" />
       </mesh>
     </RigidBody>
   );

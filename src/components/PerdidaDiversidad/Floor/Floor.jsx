@@ -1,6 +1,6 @@
 import { RigidBody } from "@react-three/rapier";
 
-export default function Floor(props){
+export default function FloorPerdidaDiversidad(props){
   return (
     <RigidBody
       type="fixed"

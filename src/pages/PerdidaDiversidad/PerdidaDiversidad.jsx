@@ -6,7 +6,7 @@ import { Suspense, useState } from "react";
 import { KeyboardControls } from "@react-three/drei";
 import Ecctrl, { EcctrlAnimation } from "ecctrl";
 
-import Floor from "../../components/PerdidaDiversidad/Floor/Floor";
+import FloorPerdidaDiversidad from "../../components/PerdidaDiversidad/Floor/Floor";
 import DestroyedNature from "../../components/PerdidaDiversidad/DestroyedNature/DestroyedNature";
 import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
 import Lights from "../../components/lights/Lights";
@@ -52,7 +52,7 @@ const PerdidaDiversidad = () => {
                 </EcctrlAnimation>
               </Ecctrl>
             </KeyboardControls>
-            <Floor />
+            <FloorPerdidaDiversidad/>
           </Physics>
         </Suspense>
       </Canvas>

@@ -2,65 +2,56 @@ import React from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export default function CharacterModel(props) {
-  const { nodes, materials } = useGLTF('models-3d/Demon.glb')
-  for (const material in materials) {
-    materials[material].metalness = -2
-    materials[material].roughness = 1
-  }
+  const { nodes, materials } = useGLTF('models-3d/Bulbasaur.glb')
 
   return (
-    <group name="Root_Scene">
-      <group name="RootNode">
-        <group name="CharacterArmature" rotation={[-Math.PI / 2, 0, 0]} scale={50} position={[0, -0.85, 0]}>
-          <primitive object={nodes.Root} />
+    <group {...props} dispose={null} scale={0.007} position={[0,-0.25,0]}>
+      <group name="Scene">
+        <group name="CharacterArmature">
+          <group name="Bulbasaur72" rotation={[-Math.PI / 2, 0, 0]} />
+          <group name="Bulbasaur_LVine73" rotation={[-Math.PI / 2, 0, 0]} />
+          <group name="Bulbasaur_RVine74" rotation={[-Math.PI / 2, 0, 0]} />
+          <skinnedMesh
+            name="Mesh_0"
+            geometry={nodes.Mesh_0.geometry}
+            material={materials.Material_0}
+            skeleton={nodes.Mesh_0.skeleton}
+          />
+          <skinnedMesh
+            name="Mesh_1"
+            geometry={nodes.Mesh_1.geometry}
+            material={materials.Material_1}
+            skeleton={nodes.Mesh_1.skeleton}
+          />
+          <skinnedMesh
+            name="Mesh_2"
+            geometry={nodes.Mesh_2.geometry}
+            material={materials.Material_2}
+            skeleton={nodes.Mesh_2.skeleton}
+          />
+          <skinnedMesh
+            name="Mesh_3"
+            geometry={nodes.Mesh_3.geometry}
+            material={materials.Material_3}
+            skeleton={nodes.Mesh_3.skeleton}
+          />
+          <skinnedMesh
+            name="Mesh_4"
+            geometry={nodes.Mesh_4.geometry}
+            material={materials.Material_4}
+            skeleton={nodes.Mesh_4.skeleton}
+          />
+          <skinnedMesh
+            name="Mesh_5"
+            geometry={nodes.Mesh_5.geometry}
+            material={materials.Material_5}
+            skeleton={nodes.Mesh_5.skeleton}
+          />
+          <primitive object={nodes.pm0001_001} />
         </group>
-        <group name="Demon" rotation={[-Math.PI / 2, 0, 0]} scale={100}>
-          <skinnedMesh
-            name="Demon_1"
-            geometry={nodes.Demon_1.geometry}
-            material={materials.Demon_Main}
-            skeleton={nodes.Demon_1.skeleton}
-            receiveShadow
-            castShadow
-          />
-          <skinnedMesh
-            name="Demon_2"
-            geometry={nodes.Demon_2.geometry}
-            material={materials.Black}
-            skeleton={nodes.Demon_2.skeleton}
-            receiveShadow
-            castShadow
-          />
-          <skinnedMesh
-            name="Demon_3"
-            geometry={nodes.Demon_3.geometry}
-            material={materials.Eye_White}
-            skeleton={nodes.Demon_3.skeleton}
-            receiveShadow
-            castShadow
-          />
-          <skinnedMesh
-            name="Demon_4"
-            geometry={nodes.Demon_4.geometry}
-            material={materials.Eye_Black}
-            skeleton={nodes.Demon_4.skeleton}
-            receiveShadow
-            castShadow
-          />
-        </group>
-        <skinnedMesh
-          name="Trident"
-          geometry={nodes.Trident.geometry}
-          material={materials.Black}
-          skeleton={nodes.Trident.skeleton}
-          position={[1.895, 1.734, -0.17]}
-          scale={75.326}
-          receiveShadow
-          castShadow
-        />
       </group>
     </group>
   )
 }
 
-useGLTF.preload('models-3d/Demon.glb')
+useGLTF.preload('models-3d/Bulbasaur.glb')

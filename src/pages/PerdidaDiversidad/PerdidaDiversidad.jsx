@@ -6,7 +6,7 @@ import { Suspense, useState } from "react";
 import { KeyboardControls } from "@react-three/drei";
 import Ecctrl, { EcctrlAnimation } from "ecctrl";
 
-import FloorPerdidaDiversidad from "../../components/PerdidaDiversidad/Floor/Floor";
+import FloorPerdidaDiversidad from "../../components/PerdidaDiversidad/FloorPerdidaDiversidad/FloorPerdidaDiversidad";
 import DestroyedNature from "../../components/PerdidaDiversidad/DestroyedNature/DestroyedNature";
 import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
 import Lights from "../../components/lights/Lights";

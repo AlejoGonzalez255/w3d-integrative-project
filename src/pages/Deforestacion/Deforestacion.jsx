@@ -8,7 +8,7 @@ import Ecctrl, { EcctrlAnimation } from "ecctrl";
 import Lights from "../../components/lights/Lights";
 import Staging from "../../components/staging/Staging";
 import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
-import FloorDeforestacion from "../../components/Deforestacion/Floor/Floor";
+import FloorDeforestacion from "../../components/Deforestacion/FloorDeforestacion/FloorDeforestacion";
 import ButtonStart from "../../components/ButtonStart/ButtonStart";
 
 const Deforestacion = () => {

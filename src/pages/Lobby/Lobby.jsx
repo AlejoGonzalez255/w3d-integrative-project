@@ -63,7 +63,7 @@ const Lobby = () => {
                 </EcctrlAnimation>
               </Ecctrl>
             </KeyboardControls>
-            <Floor />
+            <Floor/>
           </Physics>
           <Text position={[0, 6.5, 10]} rotation={[0, -3.15, 0]} color={"black"}>
             {"Bienvenido a ECOEARTH!"}

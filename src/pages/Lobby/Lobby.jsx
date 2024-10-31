@@ -35,13 +35,13 @@ const Lobby = () => {
 
   // Animaciones de Bulbasaur
   const animationSet = {
-    idle: "idle",
-    walk: "walk",
-    run: "run",
-    jump: "Jump_Start",
-    jumpIdle: "Jump_Idle",
-    jumpLand: "Jump_Land",
-    fall: "Fall",
+    idle: 'CharacterArmature|Idle',
+    walk: 'CharacterArmature|Walk',
+    run: 'CharacterArmature|Run',
+    jump: 'CharacterArmature|Jump',
+    jumpIdle: 'CharacterArmature|Jump_Idle',
+    jumpLand: 'CharacterArmature|Jump_Land',
+    fall: 'CharacterArmature|Duck',
   };
 
   return (
@@ -58,7 +58,7 @@ const Lobby = () => {
             <TestDummy3d />
             <KeyboardControls map={keyboardMap}>
               <Ecctrl animated debug>
-                <EcctrlAnimation characterURL="models-3d/Bulbasaur2.glb" animationSet={animationSet}>
+                <EcctrlAnimation characterURL="models-3d/Demon.glb" animationSet={animationSet}>
                   <Bulbasaur />
                 </EcctrlAnimation>
               </Ecctrl>

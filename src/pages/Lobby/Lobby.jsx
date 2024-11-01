@@ -11,6 +11,7 @@ import Staging from "../../components/staging/Staging";
 import Floor from "../../components/Lobby/Floor/Floor";
 import NatureItems from "../../components/Lobby/NatureItems/NatureItems";
 import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
+import Squirtle from "../../components/Lobby/Squirtle/Squirtle";
 import TestDummy3d from "../../components/Lobby/TestDummy/TestDummy3d";
 import House from "../../components/Lobby/House/House";
 import WoodenSings from "../../components/Lobby/WoodenSigns/WoodenSings";
@@ -56,6 +57,7 @@ const Lobby = () => {
             <House />
             <WoodenSings />
             <TestDummy3d />
+            <Squirtle/>
             <KeyboardControls map={keyboardMap}>
               <Ecctrl animated scale={2} capsuleHalfHeight={0.05} capsuleRadius={0.2}>
                 <EcctrlAnimation characterURL="models-3d/Bulbasaur.glb" animationSet={animationSet}>

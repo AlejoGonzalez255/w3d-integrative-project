@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
-import * as THREE from 'three' 
-
+import * as THREE from 'three'
+import { RigidBody, CuboidCollider } from '@react-three/rapier';
 
 export default function Squirtle(props) {
   const group = useRef()
@@ -35,6 +35,7 @@ export default function Squirtle(props) {
   }
 
   return (
+    <RigidBody type="fixed" colliders={false}>
     <group ref={group} {...props} dispose={null} scale={0.03} position={[-5,0,4]} rotation={[0,2,0]}>
       <group name="Scene" onClick={handleGreeting}>
         <group name="CharacterArmature">
@@ -59,6 +60,11 @@ export default function Squirtle(props) {
         </group>
       </group>
     </group>
+    <CuboidCollider
+          args={[0.3, 1.3, 0.3]}
+          position={[-5,0,4]}
+        />
+    </RigidBody>
   )
 }
 

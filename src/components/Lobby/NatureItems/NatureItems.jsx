@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three';
-import { RigidBody } from '@react-three/rapier';
+import { RigidBody, CuboidCollider } from '@react-three/rapier';
 
 
 export function NatureItems(props) {
@@ -63,11 +63,12 @@ const rocaPosiciones = [
 
 
   return (
-    <RigidBody type="fixed" colliders="cuboid">
+
     <group {...props} dispose={null}>
 
       {arbolPinoPosiciones.map((posicion, index) => (
-        <group key={`arbol-pino-${index}`} position={posicion} scale={0.2 + Math.random() * 0.2}>
+        <RigidBody type="fixed" colliders={false} >
+        <group key={`arbol-pino-${index}`} position={posicion} scale={0.2}>
           <mesh
             castShadow
             receiveShadow
@@ -81,12 +82,18 @@ const rocaPosiciones = [
             material={new THREE.MeshStandardMaterial({ color: '#4a901e' })}
           />
         </group>
+        <CuboidCollider
+          args={[0.5, 8, 0.5]}
+          position={posicion} 
+        />
+        </RigidBody>
          
       ))} 
      
       
       {arbolNormalPosiciones.map((posicion, index) => (
-        <group key={`arbol-normal-${index}`} position={posicion} scale={7 + Math.random() * 1}>
+        <RigidBody type="fixed" colliders={false}>
+        <group key={`arbol-normal-${index}`} position={posicion} scale={7}>
           <mesh
             castShadow
             receiveShadow
@@ -100,11 +107,17 @@ const rocaPosiciones = [
             material={new THREE.MeshStandardMaterial({ color: "#58a528" })}
           />
         </group>
+        <CuboidCollider
+          args={[0.5, 8, 0.5]}
+          position={posicion} 
+        />
+        </RigidBody>
       ))}
 
 
       {florPosiciones.map((posicion, index) => (
-        <group key={`flor-${index}`} position={posicion} scale={0.03 + Math.random() * 0.04}>
+        <RigidBody type="fixed" colliders="cuboid">
+        <group key={`flor-${index}`} position={posicion} scale={0.03}>
           <mesh
             castShadow
             receiveShadow
@@ -124,20 +137,24 @@ const rocaPosiciones = [
             material={materials['Material.003']}
           />
         </group>
+        </RigidBody>
       ))}
 
 
       {hierbaPosiciones.map((posicion, index) => (
-        <mesh key={`hierba-${index}`} position={posicion} scale={0.03 + Math.random() * 0.04}
+        <RigidBody type="fixed" colliders="cuboid">
+        <mesh key={`hierba-${index}`} position={posicion} scale={0.03}
           castShadow
           receiveShadow
           geometry={nodes.Cube002.geometry}
           material={new THREE.MeshStandardMaterial({ color: 'green' })}
         />
+        </RigidBody>
       ))}
 
 
       {arbolSecoPosiciones.map((posicion, index) => (
+        <RigidBody type="fixed" colliders="cuboid">
         <mesh
           key={`arbol-seco-${index}`}
           castShadow
@@ -148,10 +165,12 @@ const rocaPosiciones = [
           rotation={[0, Math.random() * Math.PI * 2, 0]}
           scale={11 + Math.random() * 2}
         />
+        </RigidBody>
       ))}
 
       {troncoPosiciones.map((posicion, index) => (
-        <group key={`tronco-${index}`} position={posicion} scale={0.8 + Math.random() * 0.1}>
+        <RigidBody type="fixed" colliders={false}>
+        <group key={`tronco-${index}`} position={posicion} scale={0.8}>
           <mesh
             castShadow
             receiveShadow
@@ -171,10 +190,15 @@ const rocaPosiciones = [
             material={materials['tree 3']}
           />
         </group>
+        <CuboidCollider
+          args={[0.7, 1, 0.7]}
+          position={posicion} 
+        />
+        </RigidBody>
       ))}
 
       {troncoCaidoPosiciones.map((posicion, index) => (
-        <group key={`tronco-caido-${index}`} position={posicion} scale={0.8 + Math.random() * 0.1}>
+        <group key={`tronco-caido-${index}`} position={posicion} scale={0.8}>
           <mesh
             castShadow
             receiveShadow
@@ -204,16 +228,22 @@ const rocaPosiciones = [
       ))}
 
       {rocaPosiciones.map((posicion, index) => (
-        <mesh key={`roca-${index}`} position={posicion} scale={1 + Math.random() * 10}
+        <RigidBody type="fixed" colliders={false}>
+        <mesh key={`roca-${index}`} position={posicion} scale={4}
           castShadow
           receiveShadow
           geometry={nodes.Icosphere001.geometry}
           material={materials.Material}
         />
+        <CuboidCollider
+          args={[0.6, 0.6, 0.6]}
+          position={posicion} 
+        />
+        </RigidBody>
       ))}
 
     </group>
-    </RigidBody>
+
   )
 }
 

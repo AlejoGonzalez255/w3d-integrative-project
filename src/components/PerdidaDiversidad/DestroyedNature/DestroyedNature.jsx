@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three';
-
+import { RigidBody } from '@react-three/rapier';
 
 export function DestroyedNature(props) {
   const { nodes, materials } = useGLTF('models-3d/natureItems.glb')
@@ -58,6 +58,7 @@ const rocaPosiciones = [
 
 
   return (
+    <RigidBody type="fixed" colliders="cuboid">
     <group {...props} dispose={null}>
 
       {arbolPinoPosiciones.map((posicion, index) => (
@@ -205,6 +206,7 @@ const rocaPosiciones = [
       ))}
 
     </group>
+    </RigidBody>
   )
 }
 

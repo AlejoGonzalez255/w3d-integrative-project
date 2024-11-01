@@ -4,7 +4,7 @@ export default function FloorPerdidaDiversidad(props){
   return (
     <RigidBody
       type="fixed"
-      colliders="trimesh"    
+      colliders="cuboid"   
       ccd                
       friction={0.65}
       restitution={0.2}

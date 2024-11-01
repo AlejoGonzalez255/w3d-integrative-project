@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three';
+import { RigidBody } from '@react-three/rapier';
 
 
 export function NatureItems(props) {
@@ -32,7 +33,7 @@ const hierbaPosiciones = [
   [-35, 0, 35], [25, 0, -25], [-30, 0, -5], [20, 0, 25], [-15, 0, 15],
   [10, 0, -30], [5, 0, 20], [-25, 0, 10], [30, 0, -15], [8, 0, -8],
   [-5, 0, -35], [18, 0, 10], [0, 0, 15], [-10, 0, 25], [22, 0, -22],
-  [-18, 0, -15], [10, 0, 5], [15, 0, 35], [-25, 0, 30]
+  [-18, 0, -15], [18, 0, 5], [15, 0, 35], [-25, 0, 30]
 ];
 
 // Troncos en pie
@@ -62,6 +63,7 @@ const rocaPosiciones = [
 
 
   return (
+    <RigidBody type="fixed" colliders="cuboid">
     <group {...props} dispose={null}>
 
       {arbolPinoPosiciones.map((posicion, index) => (
@@ -79,8 +81,10 @@ const rocaPosiciones = [
             material={new THREE.MeshStandardMaterial({ color: '#4a901e' })}
           />
         </group>
-      ))}
-
+         
+      ))} 
+     
+      
       {arbolNormalPosiciones.map((posicion, index) => (
         <group key={`arbol-normal-${index}`} position={posicion} scale={7 + Math.random() * 1}>
           <mesh
@@ -100,7 +104,7 @@ const rocaPosiciones = [
 
 
       {florPosiciones.map((posicion, index) => (
-        <group key={`flor-${index}`} position={posicion} rotation={[0, Math.random() * Math.PI * 2, 0]} scale={0.03 + Math.random() * 0.04}>
+        <group key={`flor-${index}`} position={posicion} scale={0.03 + Math.random() * 0.04}>
           <mesh
             castShadow
             receiveShadow
@@ -124,7 +128,7 @@ const rocaPosiciones = [
 
 
       {hierbaPosiciones.map((posicion, index) => (
-        <mesh key={`hierba-${index}`} position={posicion} rotation={[0, Math.random() * Math.PI * 2, 0]} scale={0.03 + Math.random() * 0.04}
+        <mesh key={`hierba-${index}`} position={posicion} scale={0.03 + Math.random() * 0.04}
           castShadow
           receiveShadow
           geometry={nodes.Cube002.geometry}
@@ -170,7 +174,7 @@ const rocaPosiciones = [
       ))}
 
       {troncoCaidoPosiciones.map((posicion, index) => (
-        <group key={`tronco-caido-${index}`} position={posicion} rotation={[0, Math.random() * Math.PI * 2, 0]} scale={0.8 + Math.random() * 0.1}>
+        <group key={`tronco-caido-${index}`} position={posicion} scale={0.8 + Math.random() * 0.1}>
           <mesh
             castShadow
             receiveShadow
@@ -200,7 +204,7 @@ const rocaPosiciones = [
       ))}
 
       {rocaPosiciones.map((posicion, index) => (
-        <mesh key={`roca-${index}`} position={posicion} rotation={[0, Math.random() * Math.PI * 2, Math.random() * 0.1]} scale={1 + Math.random() * 15}
+        <mesh key={`roca-${index}`} position={posicion} scale={1 + Math.random() * 10}
           castShadow
           receiveShadow
           geometry={nodes.Icosphere001.geometry}
@@ -209,6 +213,7 @@ const rocaPosiciones = [
       ))}
 
     </group>
+    </RigidBody>
   )
 }
 

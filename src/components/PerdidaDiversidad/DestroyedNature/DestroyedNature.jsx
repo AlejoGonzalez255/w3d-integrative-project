@@ -102,7 +102,6 @@ const rocaPosiciones = [
 
 
       {florPosiciones.map((posicion, index) => (
-        <RigidBody type="fixed" colliders="cuboid">
         <group key={`flor-${index}`} position={posicion} scale={0.03}>
           <mesh
             castShadow
@@ -123,19 +122,16 @@ const rocaPosiciones = [
             material={materials['Material.003']}
           />
         </group>
-        </RigidBody>
       ))}
 
 
       {hierbaPosiciones.map((posicion, index) => (
-        <RigidBody type="fixed" colliders="cuboid">
         <mesh key={`hierba-${index}`} position={posicion} scale={0.03}
           castShadow
           receiveShadow
           geometry={nodes.Cube002.geometry}
           material={new THREE.MeshStandardMaterial({ color: 'green' })}
         />
-        </RigidBody>
       ))}
 
 

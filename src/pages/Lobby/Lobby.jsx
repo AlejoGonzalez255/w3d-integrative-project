@@ -23,6 +23,10 @@ import useModalSummaryStore from "../../stores/use-modalSummary-state";
 const Lobby = () => {
   const [ready, setReady] = useState(false);
   const { modalSummary, setModalSummary } = useModalSummaryStore();
+  const [clickCount, setClickCount] = useState(0);
+  const [greetingPlayed, setGreetingPlayed] = useState(false);
+
+  const texts = ["¡Hola!", "¿Cómo estás?", "¡Cuida la naturaleza!"];
 
   // Mapeo de controles de teclado
   const keyboardMap = [
@@ -45,6 +49,16 @@ const Lobby = () => {
     fall: 'Fall',
   };
 
+  const handleSquirtleClick = () => {
+    if (!greetingPlayed) {
+      setGreetingPlayed(true); 
+    } else if (clickCount < texts.length - 1) {
+      setClickCount(prevCount => prevCount + 1); 
+    } else {
+      setClickCount(-1); 
+    }
+  };
+
   return (
     <>
       <Canvas shadows={true}>
@@ -57,7 +71,7 @@ const Lobby = () => {
             <House />
             <WoodenSings />
             <TestDummy3d />
-            <Squirtle/>
+            <Squirtle onClick={handleSquirtleClick}/>
             <KeyboardControls map={keyboardMap}>
               <Ecctrl animated scale={2} capsuleHalfHeight={0.05} capsuleRadius={0.2}>
                 <EcctrlAnimation characterURL="models-3d/Bulbasaur.glb" animationSet={animationSet}>
@@ -82,6 +96,19 @@ const Lobby = () => {
           <Text position={[-11, 3.5, 9.9]} rotation={[0, -3.15, 0]} color={"black"} scale={0.5}>
             {"Erosion del Suelo"}
           </Text>
+
+          {greetingPlayed && (
+            <Text
+              position={[-5, 3, 4]} 
+              rotation={[0, 2, 0]}
+              color="Black"
+              fontSize={0.5}
+              outlineWidth={0.9}
+              outlineColor="White"
+            >
+              {texts[clickCount]}
+            </Text>
+          )}
         </Suspense>
       </Canvas>
       <ModalSummary show={modalSummary} onHide={() => setModalSummary(false)} />

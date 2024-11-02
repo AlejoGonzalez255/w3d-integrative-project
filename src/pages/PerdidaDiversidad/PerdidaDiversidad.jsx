@@ -1,22 +1,26 @@
 import "./PerdidaDiversidad.css";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import { Perf } from 'r3f-perf'
+import { Perf } from 'r3f-perf';
 import { Suspense, useState } from "react";
-import { KeyboardControls } from "@react-three/drei";
+import { KeyboardControls, Text } from "@react-three/drei";
 import Ecctrl, { EcctrlAnimation } from "ecctrl";
 
 import Floor from "../../components/PerdidaDiversidad/Floor/Floor";
 import DestroyedNature from "../../components/PerdidaDiversidad/DestroyedNature/DestroyedNature";
 import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
+import Chikorita from "../../components/PerdidaDiversidad/Chikorita/Chikorita";
 import Lights from "../../components/lights/Lights";
 import Staging from "../../components/staging/Staging";
 import ButtonStart from "../../components/ButtonStart/ButtonStart";
 
 const PerdidaDiversidad = () => {
-    const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(false);
+  const [clickCount, setClickCount] = useState(0);
+  const [greetingPlayed, setGreetingPlayed] = useState(false);
 
-    // Mapeo de controles de teclado
+  const texts = ["¡Hola!", "¿Cómo estás?", "¡Cuida la naturaleza!"];
+
   const keyboardMap = [
     { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
     { name: 'backward', keys: ['ArrowDown', 'KeyS'] },
@@ -26,7 +30,6 @@ const PerdidaDiversidad = () => {
     { name: 'run', keys: ['Shift'] },
   ];
 
-  // Animaciones de Bulbasaur
   const animationSet = {
     idle: 'Idle',
     walk: 'Walk',
@@ -36,15 +39,28 @@ const PerdidaDiversidad = () => {
     jumpLand: 'JumpLand',
     fall: 'Fall',
   };
-    return (
-        <>
-        <Canvas shadows={true}>
-          <Lights />
-          <Staging />
-          <Perf position="top-left" minimal />
+
+
+  const handleChikoritaClick = () => {
+    if (!greetingPlayed) {
+      setGreetingPlayed(true); 
+    } else if (clickCount < texts.length - 1) {
+      setClickCount(prevCount => prevCount + 1); 
+    } else {
+      setClickCount(-1); 
+    }
+  };
+
+  return (
+    <>
+      <Canvas shadows={true}>
+        <Lights />
+        <Staging />
+        <Perf position="top-left" minimal />
         <Suspense fallback={null}>
           <Physics timeStep="vary" debug={true}>
-            <DestroyedNature/>
+            <DestroyedNature />
+            <Chikorita onClick={handleChikoritaClick} />
             <KeyboardControls map={keyboardMap}>
               <Ecctrl animated scale={2} capsuleHalfHeight={0.05} capsuleRadius={0.2}>
                 <EcctrlAnimation characterURL="models-3d/Bulbasaur.glb" animationSet={animationSet}>
@@ -52,8 +68,21 @@ const PerdidaDiversidad = () => {
                 </EcctrlAnimation>
               </Ecctrl>
             </KeyboardControls>
-            <Floor/>
+            <Floor />
           </Physics>
+
+          {greetingPlayed && (
+            <Text
+              position={[-5, 3, 4]} 
+              rotation={[0, 2, 0]}
+              color="Black"
+              fontSize={0.5}
+              outlineWidth={0.9}
+              outlineColor="White"
+            >
+              {texts[clickCount]}
+            </Text>
+          )}
         </Suspense>
       </Canvas>
 
@@ -63,9 +92,10 @@ const PerdidaDiversidad = () => {
       >
         <ButtonStart />
       </div>
-        </>
-
-    );
+    </>
+  );
 };
 
 export default PerdidaDiversidad;
+
+

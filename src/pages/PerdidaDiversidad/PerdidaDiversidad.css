@@ -1,47 +1,65 @@
-.fullscreen {
-    position: absolute;
+.combat-interface {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: all 1s;
-    z-index: 9999;
+    pointer-events: none; /* Permite clics a través de este contenedor */
   }
-.bg {
-    background: #101010;
-}
-
-.fullscreen .logout {
-    background: transparent;
+  
+  .combat-stats {
+    position: absolute;
+    top: 20px;
+    pointer-events: auto; /* Permite clics en elementos interactivos dentro */
+  }
+  
+  .player-bar {
+    left: 20px;
+  }
+  
+  .enemy-bar {
+    right: 20px;
+  }
+  
+  .health-bar {
+    width: 200px;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .health-fill {
+    height: 100%;
+    background-color: #4caf50; /* Color de la vida */
+    transition: width 0.5s ease; /* Transición suave */
+  }
+  
+  .enemy-bar .health-fill {
+    background-color: #f44336; /* Color de la vida del enemigo */
+  }
+  
+  .combat-actions {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: auto;
+  }
+  
+  .combat-actions button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
     border: none;
-    width: auto;
-    color: white;
-    display: block;
-    margin: 10px auto;
-}
-
-.fullscreen .continue-link {
-    text-decoration: none;
-    transition: all 1s;
-    width: 20%;
-    text-align: center;
-}
-
-.fullscreen.notready .continue-link {
-    cursor: auto;
-    color: #606060;
-}
-
-.fullscreen.ready .continue-link {
+    border-radius: 5px;
     cursor: pointer;
-    color: white;
-}
-
-.fullscreen.clicked {
-    pointer-events: none;
-    opacity: 0;
-}
+  }
+  
+  .combat-actions button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+  }
+  

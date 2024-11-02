@@ -47,7 +47,7 @@ const PerdidaDiversidad = () => {
     } else if (clickCount < texts.length - 1) {
       setClickCount(prevCount => prevCount + 1); 
     } else {
-      setClickCount(0); 
+      setClickCount(-1); 
     }
   };
 

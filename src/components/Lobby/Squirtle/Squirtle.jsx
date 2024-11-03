@@ -4,6 +4,18 @@ import * as THREE from 'three'
 import { RigidBody, CuboidCollider } from '@react-three/rapier';
 
 export default function Squirtle(props) {
+
+  const handlePointerOver = () => {
+    // Cambia el cursor al puntero
+    document.body.style.cursor = 'pointer';
+    
+  };
+  
+  const handlePointerOut = () => {
+    // Restablece el cursor al normal
+    document.body.style.cursor = 'auto';
+  };
+
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('models-3d/Squirtle.glb')
   const { actions } = useAnimations(animations, group)
@@ -35,8 +47,8 @@ export default function Squirtle(props) {
   }
 
   return (
-    <RigidBody type="fixed" colliders={false}>
-    <group ref={group} {...props} dispose={null} scale={0.03} position={[-5,0,4]} rotation={[0,2,0]}>
+    <RigidBody type="fixed" colliders={false} onPointerOver={handlePointerOver} onPointerOut={handlePointerOut}>
+    <group  ref={group} {...props} dispose={null} scale={0.03} position={[-5,0,4]} rotation={[0,2,0]}>
       <group name="Scene" onClick={handleGreeting}>
         <group name="CharacterArmature">
           <skinnedMesh

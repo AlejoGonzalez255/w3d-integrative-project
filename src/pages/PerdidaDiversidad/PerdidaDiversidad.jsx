@@ -10,7 +10,7 @@ import Ecctrl, { EcctrlAnimation } from "ecctrl";
 import Floor from "../../components/PerdidaDiversidad/Floor/Floor";
 import DestroyedNature from "../../components/PerdidaDiversidad/DestroyedNature/DestroyedNature";
 import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
-import Chikorita from "../../components/PerdidaDiversidad/Chikorita/Chikorita";
+import Chikorita from "../../components/Chikorita/Chikorita";
 import Typhlosion from "../../components/Typhlosion/Typhlosion";
 import Lights from "../../components/lights/Lights";
 import Staging from "../../components/staging/Staging";

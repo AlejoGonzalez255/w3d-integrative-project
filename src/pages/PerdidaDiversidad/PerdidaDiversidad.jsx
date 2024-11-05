@@ -12,6 +12,7 @@ import DestroyedNature from "../../components/PerdidaDiversidad/DestroyedNature/
 import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
 import Chikorita from "../../components/PerdidaDiversidad/Chikorita/Chikorita";
 import Typhlosion from "../../components/Typhlosion/Typhlosion";
+import Charizard from "../../components/Charizard/Charizard";
 import Lights from "../../components/lights/Lights";
 import Staging from "../../components/staging/Staging";
 import ButtonStart from "../../components/ButtonStart/ButtonStart";
@@ -27,13 +28,15 @@ const PerdidaDiversidad = () => {
     playerHP,
     enemyHP,
     typhlosionVisible,
+    charizardVisible,
     combatMessage,
-    typhlosionMessage,
+    enemyMessage,
     startCombat,
     playerAttack,
     enemyAttack,
     exitCombat,
     isPlayerTurn,
+    currentEnemy,
   } = useCombat();
 
   const texts = ["¡Hola!", "¿Cómo estás?", "¡Cuida la naturaleza!"];
@@ -76,7 +79,8 @@ const PerdidaDiversidad = () => {
         <Suspense fallback={null}>
           <Physics timeStep="vary" debug={true}>
             <DestroyedNature />
-            {typhlosionVisible && <Typhlosion onClick={startCombat} />}
+            {typhlosionVisible && <Typhlosion onClick={() => startCombat("Typhlosion")} />}
+            {charizardVisible && <Charizard onClick={() => startCombat("Charizard")} />}
             <Chikorita onClick={handleChikoritaClick} />
             <KeyboardControls map={keyboardMap} enabled={!isInCombat}>
               <Ecctrl animated scale={2} capsuleHalfHeight={0.05} capsuleRadius={0.2}>
@@ -116,8 +120,8 @@ const PerdidaDiversidad = () => {
             </Text>
           )}
 
-          {/* Mensaje de Typhlosion */}
-          {typhlosionMessage && (
+          {/* Mensaje del enemigo */}
+          {enemyMessage && (
             <Text
               position={[0, 6, 68]}
               rotation={[0, 3, 0]}
@@ -126,7 +130,7 @@ const PerdidaDiversidad = () => {
               outlineWidth={0.9}
               outlineColor="Black"
             >
-              {typhlosionMessage}
+              {enemyMessage}
             </Text>
           )}
         </Suspense>
@@ -144,7 +148,7 @@ const PerdidaDiversidad = () => {
 
           {/* Barra de vida del enemigo */}
           <div className="combat-stats enemy-bar">
-            <p>Enemigo:</p>
+            <p>Enemigo: {currentEnemy}</p>
             <div className="health-bar">
               <div className="health-fill" style={{ width: `${enemyHP}%` }}></div>
             </div>
@@ -170,6 +174,7 @@ const PerdidaDiversidad = () => {
 };
 
 export default PerdidaDiversidad;
+
 
 
 

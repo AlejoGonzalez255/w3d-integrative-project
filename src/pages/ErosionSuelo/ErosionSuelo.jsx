@@ -19,7 +19,7 @@ const ErosionSuelo = () => {
   const [greetingPlayed, setGreetingPlayed] = useState(false);
 
   const texts = [
-    "Bienvenido, mi nombre es Chikorita",
+    "Hola, mi nombre es Chikorita",
 
     `Hace mucho tiempo, este suelo era fertil y lleno de vida, 
 la tierra era firme, y las raices de los arboles eran fuertes frente

@@ -1,6 +1,8 @@
 import { RigidBody } from "@react-three/rapier";
+import { useTexture } from "@react-three/drei";
 
 export default function Floor(props) {
+  const floorTexture = useTexture("materials/floor/dry_floor.jpg");
   return (
     <RigidBody
       type="fixed"
@@ -12,7 +14,7 @@ export default function Floor(props) {
     >
       <mesh position={[0, -5, 0]} receiveShadow={true}>
         <cylinderGeometry args={[100, 50, 10, 32]} />
-        <meshStandardMaterial color="#228B22" />
+        <meshStandardMaterial map={floorTexture} />
       </mesh>
     </RigidBody>
   );

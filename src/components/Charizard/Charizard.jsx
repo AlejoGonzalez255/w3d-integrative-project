@@ -8,11 +8,11 @@ export default function Charizard(props) {
   const { actions } = useAnimations(animations, group)
 
   useEffect(() => {
-    if (actions.Appears) {
-      actions.Appears.reset().setLoop(THREE.LoopOnce).play()
-      actions.Appears.clampWhenFinished = true
+    if (actions.Appers) {
+      actions.Appers.reset().setLoop(THREE.LoopOnce).play()
+      actions.Appers.clampWhenFinished = true
 
-      actions.Appears.getMixer().addEventListener('finished', () => {
+      actions.Appers.getMixer().addEventListener('finished', () => {
         actions.Idle?.reset().play()
       })
     }

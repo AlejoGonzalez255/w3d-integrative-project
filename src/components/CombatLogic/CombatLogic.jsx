@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 export const initialPlayerHP = 100;
 export const initialEnemyHP = 100;
@@ -8,70 +8,86 @@ export const useCombat = () => {
   const [playerHP, setPlayerHP] = useState(initialPlayerHP);
   const [enemyHP, setEnemyHP] = useState(initialEnemyHP);
   const [typhlosionVisible, setTyphlosionVisible] = useState(true);
+  const [charizardVisible, setCharizardVisible] = useState(true);
   const [combatMessage, setCombatMessage] = useState(null);
-  const [typhlosionMessage, setTyphlosionMessage] = useState("");
-  const [isPlayerTurn, setIsPlayerTurn] = useState(true); // Nuevo estado para manejar el turno del jugador
+  const [enemyName, setEnemyName] = useState("");
+  const [enemyMessage, setEnemyMessage] = useState("");
+  const [isPlayerTurn, setIsPlayerTurn] = useState(true);
+  const [messageIndex, setMessageIndex] = useState(0);
+  const [enemyPosition, setEnemyPosition] = useState([0, 0, 0]);
 
-  const typhlosionPhrases = [
-    "¡No te dejaré ganar!",
-    "¡Siente mi poder!",
-    "¡Vas a arrepentirte!",
-    "¡No te escaparás tan fácil!",
-    "¡Esto apenas comienza!",
-  ];
-
-  const getRandomTyphlosionMessage = () => {
-    const randomIndex = Math.floor(Math.random() * typhlosionPhrases.length);
-    return typhlosionPhrases[randomIndex];
+  const enemyPhrases = {
+    Typhlosion: [
+      "¡No te dejaré ganar!",
+      "¡Siente mi poder!",
+      "¡Vas a arrepentirte!",
+      "¡No te escaparás tan fácil!",
+      "¡Esto apenas comienza!",
+    ],
+    Charizard: [
+      "¡Prepárate para arder!",
+      "¡Mi fuego es imparable!",
+      "¡Te consumiré en llamas!",
+      "¡Esta es mi zona!",
+      "¡No tienes escapatoria!",
+    ],
   };
 
-  const startCombat = () => {
+  const enemyPositions = {
+    Typhlosion: [0, 11, 70],
+    Charizard: [0, 11, -70],
+  };
+
+  const startCombat = (enemy) => {
     setIsInCombat(true);
     setPlayerHP(initialPlayerHP);
     setEnemyHP(initialEnemyHP);
-    setCombatMessage(null);
-    setTyphlosionMessage("");
+    setEnemyName(enemy);
+    setEnemyPosition(enemyPositions[enemy]);
+    setCombatMessage(`¡Te enfrentas a ${enemy}!`);
+    setEnemyMessage("");
+    setMessageIndex(0);
     setIsPlayerTurn(true);
   };
 
   const playerAttack = () => {
-    if (!isPlayerTurn) return; // Bloquea si no es el turno del jugador
+    if (!isPlayerTurn) return;
 
     const damage = Math.floor(Math.random() * 20) + 10;
-    setEnemyHP(prev => {
+    setEnemyHP((prev) => {
       const newHP = Math.max(prev - damage, 0);
       if (newHP === 0) {
-        setCombatMessage("¡Ganaste el combate!");
+        setCombatMessage(`¡Ganaste el combate contra ${enemyName}!`);
         setTimeout(() => {
           setIsInCombat(false);
-          setTyphlosionVisible(false);
+          if (enemyName === "Typhlosion") setTyphlosionVisible(false);
+          if (enemyName === "Charizard") setCharizardVisible(false);
           setCombatMessage(null);
-          setTyphlosionMessage(""); // Esconde el mensaje al final del combate
+          setEnemyMessage("");
         }, 2000);
       }
       return newHP;
     });
 
-    setTyphlosionMessage(getRandomTyphlosionMessage());
-    setIsPlayerTurn(false); // Cambia turno al enemigo
+    setEnemyMessage(getSequentialEnemyMessage(enemyName));
+    setIsPlayerTurn(false);
 
-    // Retraso de 2 segundos antes del ataque del enemigo
     setTimeout(() => {
       enemyAttack();
-      setIsPlayerTurn(true); // Vuelve a ser el turno del jugador
+      setIsPlayerTurn(true);
     }, 2000);
   };
 
   const enemyAttack = () => {
     const damage = Math.floor(Math.random() * 15) + 5;
-    setPlayerHP(prev => {
+    setPlayerHP((prev) => {
       const newHP = Math.max(prev - damage, 0);
       if (newHP === 0) {
         setCombatMessage("Has perdido el combate...");
         setTimeout(() => {
           setIsInCombat(false);
           setCombatMessage(null);
-          setTyphlosionMessage(""); // Esconde el mensaje al final del combate
+          setEnemyMessage("");
         }, 2000);
       }
       return newHP;
@@ -83,8 +99,15 @@ export const useCombat = () => {
     setCombatMessage("Has escapado del combate");
     setTimeout(() => {
       setCombatMessage(null);
-      setTyphlosionMessage(""); // Esconde el mensaje al salir del combate
+      setEnemyMessage("");
     }, 2000);
+  };
+
+  const getSequentialEnemyMessage = (enemy) => {
+    const phrases = enemyPhrases[enemy];
+    const message = phrases[messageIndex];
+    setMessageIndex((prevIndex) => (prevIndex + 1) % phrases.length);
+    return message;
   };
 
   return {
@@ -92,13 +115,17 @@ export const useCombat = () => {
     playerHP,
     enemyHP,
     typhlosionVisible,
+    charizardVisible,
     combatMessage,
-    typhlosionMessage,
+    enemyMessage,
     startCombat,
     playerAttack,
     enemyAttack,
     exitCombat,
     isPlayerTurn,
+    enemyName,
+    enemyPosition,
   };
 };
+
 

@@ -12,6 +12,9 @@ import FloorDeforestacion from "../../components/Deforestacion/FloorDeforestacio
 import ButtonStart from "../../components/ButtonStart/ButtonStart";
 import DestroyedNature from "../../components/Deforestacion/DestroyedNature/DestroyedNature";
 import Chikorita from "../../components/Chikorita/Chikorita";
+import { PokeBall } from "../../components/PokeBall/PokeBall";
+import GarbageContainer from "../../components/GarbageContainer/GarbageContainer";
+import { GarbageBag } from "../../components/GarbageBag/GarbageBag";
 
 const Deforestacion = () => {
   const [ready, setReady] = useState(false);
@@ -81,6 +84,9 @@ const Deforestacion = () => {
               </Ecctrl>
             </KeyboardControls>
             <Chikorita onClick={handleChikoritaClick} />
+            <PokeBall  position={[-4,4,-4]} scale={0.2}/>
+            <GarbageBag scale={0.3} position={[2,2,2]}/>
+            <GarbageContainer scale={1.1}/>
             <DestroyedNature />
             <FloorDeforestacion />
           </Physics>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 export const initialPlayerHP = 100;
 export const initialEnemyHP = 100;
@@ -10,9 +10,11 @@ export const useCombat = () => {
   const [typhlosionVisible, setTyphlosionVisible] = useState(true);
   const [charizardVisible, setCharizardVisible] = useState(true);
   const [combatMessage, setCombatMessage] = useState(null);
-  const [enemyName, setEnemyName] = useState(""); // Nombre del enemigo actual
+  const [enemyName, setEnemyName] = useState("");
   const [enemyMessage, setEnemyMessage] = useState("");
   const [isPlayerTurn, setIsPlayerTurn] = useState(true);
+  const [messageIndex, setMessageIndex] = useState(0);
+  const [enemyPosition, setEnemyPosition] = useState([0, 0, 0]);
 
   const enemyPhrases = {
     Typhlosion: [
@@ -31,10 +33,9 @@ export const useCombat = () => {
     ],
   };
 
-  const getRandomEnemyMessage = (enemy) => {
-    const phrases = enemyPhrases[enemy];
-    const randomIndex = Math.floor(Math.random() * phrases.length);
-    return phrases[randomIndex];
+  const enemyPositions = {
+    Typhlosion: [0, 11, 70],
+    Charizard: [0, 11, -70],
   };
 
   const startCombat = (enemy) => {
@@ -42,8 +43,10 @@ export const useCombat = () => {
     setPlayerHP(initialPlayerHP);
     setEnemyHP(initialEnemyHP);
     setEnemyName(enemy);
+    setEnemyPosition(enemyPositions[enemy]);
     setCombatMessage(`¡Te enfrentas a ${enemy}!`);
     setEnemyMessage("");
+    setMessageIndex(0);
     setIsPlayerTurn(true);
   };
 
@@ -66,7 +69,7 @@ export const useCombat = () => {
       return newHP;
     });
 
-    setEnemyMessage(getRandomEnemyMessage(enemyName));
+    setEnemyMessage(getSequentialEnemyMessage(enemyName));
     setIsPlayerTurn(false);
 
     setTimeout(() => {
@@ -100,6 +103,13 @@ export const useCombat = () => {
     }, 2000);
   };
 
+  const getSequentialEnemyMessage = (enemy) => {
+    const phrases = enemyPhrases[enemy];
+    const message = phrases[messageIndex];
+    setMessageIndex((prevIndex) => (prevIndex + 1) % phrases.length);
+    return message;
+  };
+
   return {
     isInCombat,
     playerHP,
@@ -114,6 +124,8 @@ export const useCombat = () => {
     exitCombat,
     isPlayerTurn,
     enemyName,
+    enemyPosition,
   };
 };
+
 

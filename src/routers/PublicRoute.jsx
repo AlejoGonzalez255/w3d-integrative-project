@@ -5,7 +5,7 @@ const PublicRoute = ({ children })  =>{
   const { user } = useAuthStore(); 
 
   if (user) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/Deforestacion" replace />;
   }
 
   return children;

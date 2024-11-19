@@ -104,7 +104,7 @@ const PerdidaDiversidad = () => {
             </KeyboardControls>
             <Floor />
           </Physics>
-
+  
           {/* Mensaje de Chikorita */}
           {greetingPlayed && (
             <Text
@@ -118,36 +118,35 @@ const PerdidaDiversidad = () => {
               {texts[clickCount]}
             </Text>
           )}
-
-{combatMessage && (
-  <Text
-    position={enemyPosition} // Posición del enemigo actual
-    rotation={[0, Math.PI, 0]} // Ajustar orientación
-    color="Red"
-    fontSize={0.8}
-    outlineWidth={0.9}
-    outlineColor="Black"
-  >
-    {combatMessage}
-  </Text>
-)}
-
-{enemyMessage && (
-  <Text
-    position={[enemyPosition[0], enemyPosition[1]-3, enemyPosition[2]]} // Ajustar altura
-    rotation={[0, Math.PI, 0]} // Ajustar orientación
-    color="Orange"
-    fontSize={0.6}
-    outlineWidth={0.9}
-    outlineColor="Black"
-  >
-    {enemyMessage}
-  </Text>
-)}
-
+  
+          {/* Mensajes de combate */}
+          {combatMessage && (
+            <Text
+              position={enemyPosition}
+              rotation={[0, Math.PI, 0]}
+              color="Red"
+              fontSize={0.8}
+              outlineWidth={0.9}
+              outlineColor="Black"
+            >
+              {combatMessage}
+            </Text>
+          )}
+          {enemyMessage && (
+            <Text
+              position={[enemyPosition[0], enemyPosition[1] - 3, enemyPosition[2]]}
+              rotation={[0, Math.PI, 0]}
+              color="Orange"
+              fontSize={0.6}
+              outlineWidth={0.9}
+              outlineColor="Black"
+            >
+              {enemyMessage}
+            </Text>
+          )}
         </Suspense>
       </Canvas>
-
+  
       {isInCombat && (
         <div className="combat-interface">
           {/* Barra de vida del jugador */}
@@ -157,7 +156,7 @@ const PerdidaDiversidad = () => {
               <div className="health-fill" style={{ width: `${playerHP}%` }}></div>
             </div>
           </div>
-
+  
           {/* Barra de vida del enemigo */}
           <div className="combat-stats enemy-bar">
             <p>Enemigo: {currentEnemy}</p>
@@ -165,22 +164,31 @@ const PerdidaDiversidad = () => {
               <div className="health-fill" style={{ width: `${enemyHP}%` }}></div>
             </div>
           </div>
-
-          {/* Botones de acción centrados en la parte inferior */}
+  
+          {/* Botones de acción */}
           <div className="combat-actions">
-            <button onClick={playerAttack} disabled={!isPlayerTurn}>Atacar</button>
-            <button onClick={enemyAttack} disabled={!isPlayerTurn}>Defender</button>
+            <button onClick={playerAttack} disabled={!isPlayerTurn}>
+              Atacar
+            </button>
+            <button onClick={enemyAttack} disabled={!isPlayerTurn}>
+              Defender
+            </button>
             <button onClick={exitCombat}>Huir</button>
           </div>
         </div>
       )}
-
+  
       <div
         onClick={() => setReady(true)}
         className={`fullscreen bg ${ready ? "ready" : "notready"} ${ready && "clicked"}`}
       >
         <ButtonStart />
       </div>
+  
+      {/* Botón fijo para volver al lobby */}
+      <button className="lobby-button" onClick={() => console.log("Volver al lobby")}>
+        Volver al Lobby
+      </button>
     </>
   );
 };

@@ -18,18 +18,16 @@ export const useCombat = () => {
 
   const enemyPhrases = {
     Typhlosion: [
-      "¡No te dejaré ganar!",
-      "¡Siente mi poder!",
-      "¡Vas a arrepentirte!",
-      "¡No te escaparás tan fácil!",
-      "¡Esto apenas comienza!",
+      "Soy una Especie Invasora",
+      "Me dedico a cazar especies nativas",
+      "Desplazarlas de su territorio",
+      "para finalmente ser extintas",
     ],
     Charizard: [
-      "¡Prepárate para arder!",
-      "¡Mi fuego es imparable!",
-      "¡Te consumiré en llamas!",
-      "¡Esta es mi zona!",
-      "¡No tienes escapatoria!",
+      "Soy el Fuego que quema los bosques",
+      "el cigarrillo que botan, creyendo que esta apagado",
+      "la fogata que creen apagada luego de acampar",
+      "la causa de miles de bosques en el amazonas",
     ],
   };
 

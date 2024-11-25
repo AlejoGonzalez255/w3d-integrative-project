@@ -10,8 +10,8 @@ export function GarbageBag(props) {
     trashRef.current.applyImpulse({ x: -0.7, y: 1.4, z: -0.3 }, true);
   }, []);
   return (
-    <RigidBody ref={trashRef} type="dynamic" colliders="cuboid">
-        <group {...props} dispose={null}>
+    <RigidBody {...props} ref={trashRef} type="dynamic" colliders="cuboid">
+        <group dispose={null}>
         <mesh
             onClick={handleBall}
             castShadow

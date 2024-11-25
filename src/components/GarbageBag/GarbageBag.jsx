@@ -1,6 +1,7 @@
 
 import React, { useCallback, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
 import { RigidBody } from '@react-three/rapier'
 
 export function GarbageBag(props) {
@@ -9,6 +10,16 @@ export function GarbageBag(props) {
   const handleBall = useCallback(() => {
     trashRef.current.applyImpulse({ x: -0.7, y: 1.4, z: -0.3 }, true);
   }, []);
+  useFrame(() => {
+    const position = trashRef.current.translation();
+    if (position.y < -5) {
+      // Si cae fuera del mundo, reposicionarlo
+      trashRef.current.setTranslation({ x: 2, y: 2, z: 2 }, true);
+      trashRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true); // Reinicia velocidad
+      trashRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true); // Reinicia rotación
+    }
+  });
+
   return (
     <RigidBody {...props} ref={trashRef} type="dynamic" colliders="cuboid">
         <group dispose={null}>

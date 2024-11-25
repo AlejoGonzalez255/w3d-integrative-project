@@ -17,6 +17,7 @@ import Lights from "../../components/lights/Lights";
 import Staging from "../../components/staging/Staging";
 import ButtonStart from "../../components/ButtonStart/ButtonStart";
 import { useCombat } from "../../components/CombatLogic/CombatLogic";
+import Video from "../../components/PerdidaDiversidad/Video/Video";
 
 const PerdidaDiversidad = () => {
   const [ready, setReady] = useState(false);
@@ -104,6 +105,8 @@ const PerdidaDiversidad = () => {
             </KeyboardControls>
             <Floor />
           </Physics>
+
+          <Video name="screen" position={[-10,6,22]} rotation={[0,9,0]} scale={7}  />
   
           {/* Mensaje de Chikorita */}
           {greetingPlayed && (
@@ -184,11 +187,7 @@ const PerdidaDiversidad = () => {
       >
         <ButtonStart />
       </div>
-  
-      {/* Botón fijo para volver al lobby */}
-      <button className="lobby-button" onClick={() => console.log("Volver al lobby")}>
-        Volver al Lobby
-      </button>
+
     </>
   );
 };

@@ -17,3 +17,4 @@ export default function Floor(props) {
       </mesh>
     </RigidBody>
   );
+}

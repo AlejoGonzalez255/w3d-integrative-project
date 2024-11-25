@@ -1,9 +1,9 @@
 import { RigidBody } from "@react-three/rapier";
 
 export default function Walls() {
-  const wallThickness = 1; // Grosor de las paredes
-  const wallHeight = 10; // Altura de las paredes
-  const floorSize = 101; // Tamaño del área del suelo
+  const wallThickness = 1;
+  const wallHeight = 10; 
+  const floorSize = 101; 
 
   return (
     <>

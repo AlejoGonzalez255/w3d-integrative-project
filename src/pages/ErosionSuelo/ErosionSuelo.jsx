@@ -10,6 +10,7 @@ import ButtonStart from "../../components/ButtonStart/ButtonStart";
 import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
 import Chikorita from "../../components/Chikorita/Chikorita";
 import Floor from "../../components/ErosionSuelo/Floor/Floor";
+import Walls from "../../components/ErosionSuelo/Walls/Walls";
 import Vegetaion from "../../components/ErosionSuelo/Vegetation/Vegetation";
 import Staging from "../../components/ErosionSuelo/Staging/Staging";
 
@@ -90,9 +91,10 @@ y las plantas ya no creen ni florecen en este lugar`,
               </Ecctrl>
             </KeyboardControls>
             <Chikorita onClick={handleChikoritaClick} />
-            <Vegetaion />
             <Floor />
+            <Walls />
             <Staging />
+            <Vegetaion />
           </Physics>
         </Suspense>
         {greetingPlayed && (

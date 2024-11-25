@@ -4,7 +4,7 @@ const Staging = () => {
   return (
     <>
       <Environment
-        ground={{ height: 20, radius: 60, scale: 100 }}
+        ground={{ height: 5, radius: 200, scale: 100 }}
         files={"/hdris/sky/sky1.hdr"}
         background={true}
       />

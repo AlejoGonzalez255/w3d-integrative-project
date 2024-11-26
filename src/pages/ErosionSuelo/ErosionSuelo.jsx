@@ -9,6 +9,7 @@ import Lights from "../../components/lights/Lights";
 import ButtonStart from "../../components/ButtonStart/ButtonStart";
 import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
 import Chikorita from "../../components/Chikorita/Chikorita";
+import { SoccerBall } from "../../components/SoccerBall/SoccerBall";
 import Floor from "../../components/ErosionSuelo/Floor/Floor";
 import Walls from "../../components/ErosionSuelo/Walls/Walls";
 import Vegetaion from "../../components/ErosionSuelo/Vegetation/Vegetation";
@@ -95,6 +96,7 @@ y las plantas ya no creen ni florecen en este lugar`,
             <Walls />
             <Staging />
             <Vegetaion />
+            <SoccerBall position={[-7, 5, 0]}/>
           </Physics>
         </Suspense>
         {greetingPlayed && (

@@ -6,12 +6,14 @@ import { KeyboardControls, Text } from "@react-three/drei";
 import Ecctrl, { EcctrlAnimation } from "ecctrl";
 
 import Lights from "../../components/lights/Lights";
-import Staging from "../../components/staging/Staging";
 import ButtonStart from "../../components/ButtonStart/ButtonStart";
 import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
 import Chikorita from "../../components/Chikorita/Chikorita";
+import { SoccerBall } from "../../components/SoccerBall/SoccerBall";
 import Floor from "../../components/ErosionSuelo/Floor/Floor";
+import Walls from "../../components/ErosionSuelo/Walls/Walls";
 import Vegetaion from "../../components/ErosionSuelo/Vegetation/Vegetation";
+import Staging from "../../components/ErosionSuelo/Staging/Staging";
 
 const ErosionSuelo = () => {
   const [ready, setReady] = useState(false);
@@ -32,7 +34,8 @@ vientos, sin esa barrera que los protegia, el suelo empezo a erosionarse.`,
     `Cada año que pasaba, el suelo se volvia mas debil, incapaz de mantener la vida,
 ahora lo que antes era un hermoso paisaje verde y sano, es ahora un terreno seco
 y sin vida, sin nutrientes, ni raices, el suelo es desliza facil en cada tormeta
-y las plantas ya no creen ni florecen en este lugar`,];
+y las plantas ya no creen ni florecen en este lugar`,
+  ];
 
   // Mapeo de controles de teclado
   const keyboardMap = [
@@ -89,8 +92,11 @@ y las plantas ya no creen ni florecen en este lugar`,];
               </Ecctrl>
             </KeyboardControls>
             <Chikorita onClick={handleChikoritaClick} />
-            <Vegetaion />
             <Floor />
+            <Walls />
+            <Staging />
+            <Vegetaion />
+            <SoccerBall position={[-7, 5, 0]}/>
           </Physics>
         </Suspense>
         {greetingPlayed && (

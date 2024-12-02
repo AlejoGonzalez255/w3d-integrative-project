@@ -18,6 +18,15 @@ export function GarbageBag(props) {
       trashRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true); // Reinicia velocidad
       trashRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true); // Reinicia rotación
     }
+
+    if( position.x < -1.5 || position.z < 0.7){
+      setTimeout(() => {
+        trashRef.current.setTranslation({ x: 2, y: 0.35, z: 2 }, true);
+        trashRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true); // Reinicia velocidad
+        trashRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true); // Reinicia rotación
+      }, 1000); 
+    }
+    
   });
 
   return (

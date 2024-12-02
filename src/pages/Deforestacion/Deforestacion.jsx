@@ -2,7 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import { Perf } from "r3f-perf";
 import { Suspense, useState } from "react";
-import { KeyboardControls, Text } from "@react-three/drei";
+import { KeyboardControls, Loader, Text } from "@react-three/drei";
 import Ecctrl, { EcctrlAnimation } from "ecctrl";
 
 import Lights from "../../components/lights/Lights";
@@ -15,6 +15,11 @@ import Chikorita from "../../components/Chikorita/Chikorita";
 import { PokeBall } from "../../components/PokeBall/PokeBall";
 import GarbageContainer from "../../components/GarbageContainer/GarbageContainer";
 import { GarbageBag } from "../../components/GarbageBag/GarbageBag";
+import { Table3d } from "../../components/Table3d/Table3d";
+import { Tv3d } from "../../components/Tv3d/Tv3d";
+import { BeanBang } from "../../components/BeanBag3d/BeanBang";
+import PostProcessing from "../../components/PostProcessing/PostProcessing";
+import VideoDeforestation from "../../components/VideoDeforestation/VideoDeforestation";
 
 const Deforestacion = () => {
   const [ready, setReady] = useState(false);
@@ -67,43 +72,51 @@ const Deforestacion = () => {
         <Staging />
         <Perf position="top-left" minimal />
         <Suspense fallback={null}>
-          <Physics timeStep="vary" debug={true}>
-            <KeyboardControls map={keyboardMap}>
-              <Ecctrl
-                animated
-                scale={2}
-                capsuleHalfHeight={0.05}
-                capsuleRadius={0.2}
-              >
-                <EcctrlAnimation
-                  characterURL="models-3d/Bulbasaur.glb"
-                  animationSet={animationSet}
-                >
-                  <Bulbasaur />
-                </EcctrlAnimation>
-              </Ecctrl>
-            </KeyboardControls>
+          <Physics  debug={true}>
+            <PostProcessing />
             <Chikorita onClick={handleChikoritaClick} />
+            <Table3d position={[6 ,0, 6]} scale={2}/>
+            <VideoDeforestation position={[5.94, 1.57, 6]} rotation={[0, 11,0]}/>
+            <Tv3d position={[6, 1, 6]} rotation={[0, 15.7,0]} scale={1.5}/>
+            <BeanBang position={[2, 0, 6]} /> 
             <PokeBall  position={[-4,4,-4]} scale={0.2}/>
             <GarbageBag scale={0.3} position={[2,2,2]}/>
             <GarbageContainer scale={1.1}/>
             <DestroyedNature />
+            <Suspense fallback={null}>
+              <KeyboardControls map={keyboardMap}>
+                <Ecctrl
+                  animated
+                  scale={2}
+                  capsuleHalfHeight={0.05}
+                  capsuleRadius={0.2}
+                >
+                  <EcctrlAnimation
+                    characterURL="models-3d/Bulbasaur.glb"
+                    animationSet={animationSet}
+                  >
+                    <Bulbasaur />
+                  </EcctrlAnimation>
+                </Ecctrl>
+              </KeyboardControls>
+            </Suspense>  
             <FloorDeforestacion />
           </Physics>
         </Suspense>
         {greetingPlayed && (
           <Text
-            position={[-5, 3, 4]}
-            rotation={[0, 2, 0]}
-            color="Black"
-            fontSize={0.5}
+          position={[-5, 3, 4]}
+          rotation={[0, 2, 0]}
+          color="Black"
+          fontSize={0.5}
             outlineWidth={0.9}
             outlineColor="White"
-          >
+            >
             {texts[clickCount]}
           </Text>
         )}
       </Canvas>
+      <Loader />
       <div
         onClick={() => setReady(true)}
         className={`fullscreen bg ${ready ? "ready" : "notready"} ${

@@ -18,6 +18,8 @@ import Staging from "../../components/staging/Staging";
 import ButtonStart from "../../components/ButtonStart/ButtonStart";
 import { useCombat } from "../../components/CombatLogic/CombatLogic";
 import Video from "../../components/PerdidaDiversidad/Video/Video";
+import { GarbageCan } from "../../components/PerdidaDiversidad/GarbageCan/GarbageCan";
+import { GarbageBag1 } from "../../components/PerdidaDiversidad/GarbageBag/GarbageBag";
 
 const PerdidaDiversidad = () => {
   const [ready, setReady] = useState(false);
@@ -91,8 +93,10 @@ const PerdidaDiversidad = () => {
         <Staging />
         <Perf position="top-left" minimal />
         <Suspense fallback={null}>
-          <Physics timeStep="vary" debug={true}>
+          <Physics timeStep="vary">
             <DestroyedNature />
+            <GarbageCan/>
+            <GarbageBag1/>
             {typhlosionVisible && <Typhlosion onClick={() => startCombat("Typhlosion")} />}
             {charizardVisible && <Charizard onClick={() => startCombat("Charizard")} />}
             <Chikorita onClick={handleChikoritaClick} />

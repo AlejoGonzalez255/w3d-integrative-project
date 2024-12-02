@@ -3,9 +3,9 @@ import { useCallback, useState } from "react";
 
 const Video = (props) => {
   const texture = useVideoTexture("/videos/PerdidaDiversidad.mp4", {
-    muted: true,
+    muted: false,
     loop: true,
-    start: true,
+    start: false,
   });
 
   const [pause, setPause] = useState(false);

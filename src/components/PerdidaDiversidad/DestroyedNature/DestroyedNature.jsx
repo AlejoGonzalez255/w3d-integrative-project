@@ -183,8 +183,8 @@ const rocaPosiciones = [
       ))}
 
       {troncoCaidoPosiciones.map((posicion, index) => (
-        <RigidBody type="fixed" colliders="cuboid">
-        <group key={`tronco-caido-${index}`} position={posicion} scale={0.8}>
+        <RigidBody type="dynamic" colliders="trimesh">
+        <group key={`tronco-caido-${index}`} position={posicion} scale={0.4}>
           <mesh
             castShadow
             receiveShadow

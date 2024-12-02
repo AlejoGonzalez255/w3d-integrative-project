@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber';
 
 export default function CharacterModel(props) {
   const { nodes, materials } = useGLTF('models-3d/Bulbasaur.glb')
-
   return (
-    <group {...props} dispose={null} scale={0.007} position={[0,-0.25,0]}>
+    <group {...props} dispose={null} scale={0.007} position={[0,-0.26,0]}>
       <group name="Scene" >
         <group name="CharacterArmature">
           <group name="Bulbasaur72" rotation={[-Math.PI / 2, 0, 0]} />

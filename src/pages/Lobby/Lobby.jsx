@@ -19,6 +19,8 @@ import { Text, Loader } from "@react-three/drei";
 import ButtonStart from "../../components/ButtonStart/ButtonStart";
 import ModalSummary from "../../components/Lobby/ModalSummary/ModalSummary";
 import useModalSummaryStore from "../../stores/use-modalSummary-state";
+import PostProcessing from "../../components/PostProcessing/PostProcessing";
+import QuizDao from "../../daos/QuizDao";
 
 const Lobby = () => {
   const [ready, setReady] = useState(false);
@@ -83,8 +85,8 @@ const Lobby = () => {
   const handleSquirtleClick = () => {
     if (!greetingPlayed) {
       setGreetingPlayed(true);
-      setClickCount(0); // Mostrar el primer mensaje
-      startTextRotation(); // Iniciar el cambio automático de mensajes
+      setClickCount(0);
+      startTextRotation();
     }
   };
 
@@ -105,7 +107,14 @@ const Lobby = () => {
     setIntervalId(id);
   };
 
-  // Limpiar el intervalo cuando el componente se desmonte
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log(await QuizDao.getTopScores());
+    };
+    fetchData();
+  }, []);
+
+
   useEffect(() => {
     return () => clearInterval(intervalId);
   }, [intervalId]);
@@ -115,9 +124,10 @@ const Lobby = () => {
       <Canvas shadows={true}>
           <Lights />
           <Staging />
-          <Perf position="top-left" minimal />
+          {/* <Perf position="top-left" minimal /> */}
+          <PostProcessing />
         <Suspense fallback={null}>
-          <Physics timeStep="vary" debug={true}>
+          <Physics timeStep="vary" >
             <NatureItems />
             <House />
             <WoodenSings />
@@ -157,6 +167,9 @@ const Lobby = () => {
           <Text position={[-11, 3.5, 9.9]} rotation={[0, -3.15, 0]} color={"black"} scale={0.5}>
             {"Erosion del Suelo"}
           </Text>
+          <Text position={[-22, 3.5, 9.9]} rotation={[0, -3.15, 0]} color={"black"} scale={0.5}>
+            {"Mini juego"}
+          </Text>
 
           {greetingPlayed && (
             <Text
@@ -178,8 +191,8 @@ const Lobby = () => {
         className={`fullscreen bg ${ready ? "ready" : "notready"} ${ready && "clicked"}`}
       >
         <ButtonStart />
-        <Loader />
       </div>
+      <Loader />
     </>
   );
 };

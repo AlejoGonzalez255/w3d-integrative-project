@@ -20,6 +20,7 @@ import { useCombat } from "../../components/CombatLogic/CombatLogic";
 import Video from "../../components/PerdidaDiversidad/Video/Video";
 import { GarbageCan } from "../../components/PerdidaDiversidad/GarbageCan/GarbageCan";
 import { GarbageBag1 } from "../../components/PerdidaDiversidad/GarbageBag/GarbageBag";
+import ButtonGoBack from "../../components/ButtonGoBack/ButtonGoBack";
 
 const PerdidaDiversidad = () => {
   const [ready, setReady] = useState(false);
@@ -88,10 +89,11 @@ const PerdidaDiversidad = () => {
 
   return (
     <>
+      <ButtonGoBack />
       <Canvas shadows={true}>
         <Lights />
         <Staging />
-        <Perf position="top-left" minimal />
+        {/* <Perf position="top-left" minimal /> */}
         <Suspense fallback={null}>
           <Physics timeStep="vary">
             <DestroyedNature />

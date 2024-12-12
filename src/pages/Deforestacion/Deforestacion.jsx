@@ -14,12 +14,13 @@ import DestroyedNature from "../../components/Deforestacion/DestroyedNature/Dest
 import Chikorita from "../../components/Chikorita/Chikorita";
 import { PokeBall } from "../../components/PokeBall/PokeBall";
 import GarbageContainer from "../../components/GarbageContainer/GarbageContainer";
-import { GarbageBag } from "../../components/GarbageBag/GarbageBag";
 import { Table3d } from "../../components/Table3d/Table3d";
 import { Tv3d } from "../../components/Tv3d/Tv3d";
 import { BeanBang } from "../../components/BeanBag3d/BeanBang";
 import PostProcessing from "../../components/PostProcessing/PostProcessing";
 import VideoDeforestation from "../../components/VideoDeforestation/VideoDeforestation";
+import ButtonGoBack from "../../components/ButtonGoBack/ButtonGoBack";
+import { GarbageBag } from "../../components/Deforestacion/GarbageBag/GarbageBag";
 
 const Deforestacion = () => {
   const [ready, setReady] = useState(false);
@@ -67,12 +68,13 @@ const Deforestacion = () => {
 
   return (
     <>
+      <ButtonGoBack />
       <Canvas shadows={true}>
         <Lights />
         <Staging />
-        <Perf position="top-left" minimal />
+        {/* <Perf position="top-left" minimal /> */}
         <Suspense fallback={null}>
-          <Physics  debug={true}>
+          <Physics>
             <PostProcessing />
             <Chikorita onClick={handleChikoritaClick} />
             <Table3d position={[6 ,0, 6]} scale={2}/>

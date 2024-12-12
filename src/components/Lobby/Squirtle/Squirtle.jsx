@@ -47,8 +47,8 @@ export default function Squirtle(props) {
   }
 
   return (
-    <RigidBody type="fixed" colliders={false} onPointerOver={handlePointerOver} onPointerOut={handlePointerOut}>
-    <group  ref={group} {...props} dispose={null} scale={0.03} position={[-5,0,4]} rotation={[0,2,0]}>
+    <RigidBody {...props} type="fixed" colliders={false} onPointerOver={handlePointerOver} onPointerOut={handlePointerOut}>
+    <group  ref={group}  dispose={null} scale={0.03} position={[-5,0,4]} rotation={[0,2,0]}>
       <group name="Scene" onClick={handleGreeting}>
         <group name="CharacterArmature">
           <skinnedMesh

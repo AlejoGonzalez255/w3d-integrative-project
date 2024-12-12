@@ -5,8 +5,8 @@ import { RigidBody } from '@react-three/rapier'
 export default function GarbageContainer(props) {
     const { nodes, materials } = useGLTF('models-3d/trash.glb')
     return (
-        <RigidBody type="fixed" colliders="trimesh">
-            <group {...props} dispose={null}>
+        <RigidBody {...props} type="fixed" colliders="trimesh">
+            <group  dispose={null}>
                 <group position={[-0.012, 0.042, 0.002]} rotation={[-Math.PI / 2, 0, 0]}>
                 <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
                     <group position={[-148.18, 0, 47.565]} rotation={[0, Math.PI / 3, 0]}>

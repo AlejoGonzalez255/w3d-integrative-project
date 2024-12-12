@@ -9,6 +9,12 @@ export default function ModalSummary({ show, onHide }) {
   const { modalSummaryData } = useModalSummaryStore();
   const navigate = useNavigate();
 
+  const hanldeClick = () => {
+    onHide();
+    navigate(modalSummaryData.navigate);
+  }
+
+
   return (
     <Modal
       show={show}
@@ -35,7 +41,7 @@ export default function ModalSummary({ show, onHide }) {
             Cerrar
           </Button>
           <Button 
-            onClick={() => navigate(modalSummaryData.navigate)} 
+            onClick={hanldeClick} 
             style={{ backgroundColor: '#4CAF50', color: 'white', border: 'none' }}
           >
             Ir al lugar

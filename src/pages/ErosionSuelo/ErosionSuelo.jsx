@@ -14,6 +14,7 @@ import Floor from "../../components/ErosionSuelo/Floor/Floor";
 import Walls from "../../components/ErosionSuelo/Walls/Walls";
 import Vegetaion from "../../components/ErosionSuelo/Vegetation/Vegetation";
 import Staging from "../../components/ErosionSuelo/Staging/Staging";
+import ButtonGoBack from "../../components/ButtonGoBack/ButtonGoBack";
 
 const ErosionSuelo = () => {
   const [ready, setReady] = useState(false);
@@ -70,12 +71,13 @@ y las plantas ya no creen ni florecen en este lugar`,
 
   return (
     <>
+      <ButtonGoBack />
       <Canvas shadows={true}>
         <Lights />
         <Staging />
-        <Perf position="top-left" minimal />
+        {/* <Perf position="top-left" minimal /> */}
         <Suspense fallback={null}>
-          <Physics timeStep="vary" debug={true}>
+          <Physics timeStep="vary">
             <KeyboardControls map={keyboardMap}>
               <Ecctrl
                 animated

@@ -7,6 +7,7 @@ import PublicRoute from "./PublicRoute.jsx";
 import PerdidaDiversidad from "../pages/PerdidaDiversidad/PerdidaDiversidad.jsx";
 import Deforestacion from "../pages/Deforestacion/Deforestacion.jsx";
 import ErosionSuelo from "../pages/ErosionSuelo/ErosionSuelo.jsx";
+import Quiz from "../pages/Quiz/Quiz.jsx";
 
 
 export const Router = createBrowserRouter([
@@ -56,6 +57,14 @@ export const Router = createBrowserRouter([
     element: (
         <ProtectedRoute>
             <Deforestacion />
+        </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/Quiz",
+    element: (
+        <ProtectedRoute>
+            <Quiz />
         </ProtectedRoute>
     ),
   },

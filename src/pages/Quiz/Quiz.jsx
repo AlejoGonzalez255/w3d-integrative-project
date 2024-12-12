@@ -19,11 +19,42 @@ import generarNumeroAleatorio from "../../utils/randomNumberGenerator";
 import useQuizStore from "../../stores/use-quiz-store";
 import useAuthStore from "../../stores/use-auth-store";
 import QuizDAO from "../../daos/QuizDao";
+import { useNavigate } from "react-router-dom";
+
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
+function ModalQuiz({onHide, ...props}) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          ¡Felicidades!
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <p>
+          Haz salavdo al planeta de la contaminación. ¡Gracias por jugar!
+        </p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={onHide}>Volver al Lobby</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
 
 const Quiz = () => {
   const [ready, setReady] = useState(false);
-  const { quizStarted,  quizFinished, quizPoints} = useQuizStore();
+  const { quizStarted,  quizFinished, quizPoints, setQuizFinished} = useQuizStore();
   const { user } = useAuthStore();
+  const navigate = useNavigate();
+  const [modalShow, setModalShow] = useState(false);
 
   // Mapeo de controles de teclado
   const keyboardMap = [
@@ -45,16 +76,20 @@ const Quiz = () => {
     jumpLand: 'JumpLand',
     fall: 'Fall',
   };
-
+  
   useEffect(() => {
     const saveQuizData = async () => {
       if (quizFinished) {
         const userName = user.displayName;
         const points = quizPoints;
-
+        
         const quizData = { name: userName, points: points };
-
+        
         await QuizDAO.createQuizRecord(quizData);
+        
+        setQuizFinished(false);
+        setModalShow(true);
+
       }
     };
 
@@ -64,7 +99,7 @@ const Quiz = () => {
 
   return (
     <>
-
+      <ModalQuiz show={modalShow} onHide={() => navigate("/lobby")}/>
       <ButtonGoBack />
       <Clock />
       <Canvas shadows={true}>

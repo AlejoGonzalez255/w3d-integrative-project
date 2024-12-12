@@ -3,7 +3,7 @@ import './Clock.css';
 import useQuizStore from '../../stores/use-quiz-store';
 
 export default function Clock() {
-  const [time, setTime] = useState(180); // 300 segundos (5 minutos)
+  const [time, setTime] = useState(60); 
 
   const { quizStarted, setQuizStarted, quizPoints, setQuizFinished } = useQuizStore();
 

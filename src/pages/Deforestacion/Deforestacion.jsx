@@ -28,12 +28,29 @@ const Deforestacion = () => {
   const [greetingPlayed, setGreetingPlayed] = useState(false);
 
   const texts = [
-    `Aquí, hace unos años, todo esto era pura vida. 
-    Árboles tan altos que apenas dejaban ver el cielo. 
-    Las guacamayas pasaban volando de rama en rama, 
-    y uno sentía que el aire era fresco, que respiraba salud.`, 
-    "¿Cómo estás?", 
-    "¡Cuida la naturaleza!"];
+    `Hace unos años, este lugar era un paraíso. 
+    Los árboles eran enormes y el aire fresco. 
+    Ahora, la deforestación ha eliminado los bosques, 
+    el aire está más pesado y la fauna ha desaparecido.`, 
+    `La deforestación afecta todo el ecosistema: el clima, 
+    el suelo y los animales. Sin árboles, el CO2 no se absorbe, 
+    el cambio climático se intensifica y la erosión del suelo se acelera.`, 
+    `Reforestar es clave. 
+    Plantar árboles ayuda a restaurar el equilibrio ecológico. 
+    También, la agroforestería combina cultivos con árboles, 
+    protegiendo el suelo y evitando la tala masiva.`,
+    `La educación es crucial. 
+    Si más personas entienden el impacto de sus acciones, 
+    podemos exigir políticas que promuevan la conservación 
+    y el uso responsable de los recursos.`, 
+    `Restaurar ecosistemas es esencial. 
+    No solo plantar árboles,
+     sino también devolverle vida al suelo, 
+     los ríos y los hábitats naturales, 
+     aunque en algunos casos es necesario un enfoque más complejo.`,
+    `Aunque la deforestación es un gran desafío, 
+    con compromiso y pequeñas acciones podemos revertir sus efectos 
+    y permitir que el planeta se recupere.`];
 
   // Mapeo de controles de teclado
   const keyboardMap = [

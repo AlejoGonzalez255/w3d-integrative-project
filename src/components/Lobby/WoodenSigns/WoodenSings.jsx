@@ -21,7 +21,7 @@ export function WoodenSings(props) {
   };
 
   const handleNavigatetoQuiz = () => {
-    setModalSummaryData({ title: "Quiz", description: "Responde a las preguntas para aprender mas sobre los problemas ambientales", navigate: "/Quiz" });
+    setModalSummaryData({ title: "Mini juego", description: "Salva el planeta de los pokemones limpiando la mayor cantidad de basura que puedas en 1 min, si rompes el record tu nombre sera mostrado en el podio el principio", navigate: "/Quiz" });
     setModalSummary(true);
   };
 

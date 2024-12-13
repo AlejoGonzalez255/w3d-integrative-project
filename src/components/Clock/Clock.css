@@ -1,0 +1,132 @@
+.clock{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 100;
+    gap: 5px;
+}
+.timer, .counter{
+    z-index: 100;
+    color: black;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.cloader {
+    position: relative;
+    width: 5rem; /* Tamaño ajustado */
+    height: 5rem; /* Tamaño ajustado */
+    border: 2px solid black; /* Escalado */
+    border-radius: 50%;
+    padding: 1rem; /* Escalado */
+    z-index: 100;
+  }
+  
+  .clface {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-1.5px); /* Escalado */
+  }
+  
+  .top, .bottom {
+    height: 5px; /* Escalado */
+    width: 2px; /* Escalado */
+    background-color: black;
+    border-radius: 50%;
+  }
+  
+  .top {
+    margin-top: -15px; /* Escalado */
+    margin-left: 21px; /* Escalado */
+  }
+  
+  .bottom {
+    margin-top: 67.5px; /* Escalado */
+    margin-left: 21px; /* Escalado */
+  }
+  
+  .left, .right {
+    height: 2px; /* Escalado */
+    width: 5px; /* Escalado */
+    background-color: black;
+    border-radius: 50%;
+  }
+  
+  .left {
+    margin-top: -41px; /* Escalado */
+    margin-left: 56px; /* Escalado */
+  }
+  
+  .right {
+    margin-top: -2px; /* Escalado */
+    margin-left: -17.5px; /* Escalado */
+  }
+  
+  .clsface {
+    position: absolute;
+    width: 20px; /* Escalado */
+    height: 20px; /* Escalado */
+    margin-left: 12px; /* Escalado */
+    margin-top: 7.5px; /* Escalado */
+    border-radius: 50%;
+    border: 1px solid #636363; /* Escalado */
+  }
+  
+  .hand {
+    width: 32.5%; /* Escalado */
+    height: 2px; /* Escalado */
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 37.5px;
+    left: 16.5%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+  }
+  
+  .pin {
+    width: 4px; /* Escalado */
+    height: 4px; /* Escalado */
+    border-radius: 50%;
+    background: black;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  #sub {
+    width: 5%; /* Escalado */
+    height: 5%; /* Escalado */
+    border-radius: 50%;
+    background: #636363;
+    position: absolute;
+    top: 20%; /* Escalado */
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  #h1 {
+    animation: rotate 4s linear infinite;
+  }
+  
+  #h2 {
+    width: 22.5%; /* Escalado */
+    left: 2.5%; /* Escalado */
+    top: 22.5%; /* Escalado */
+    background-color: #636363;
+    animation: rotate 1s linear infinite;
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(90deg);
+    }
+    to {
+      transform: rotate(450deg);
+    }
+  }
+  

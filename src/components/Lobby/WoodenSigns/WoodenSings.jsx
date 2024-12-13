@@ -20,6 +20,11 @@ export function WoodenSings(props) {
     setModalSummary(true);
   };
 
+  const handleNavigatetoQuiz = () => {
+    setModalSummaryData({ title: "Mini juego", description: "Salva el planeta de los pokemones limpiando la mayor cantidad de basura que puedas en 1 min, si rompes el record tu nombre sera mostrado en el podio el principio", navigate: "/Quiz" });
+    setModalSummary(true);
+  };
+
   const handlePointerOver = () => {
     // Cambia el cursor al puntero
     document.body.style.cursor = 'pointer';
@@ -375,6 +380,37 @@ export function WoodenSings(props) {
         onPointerOver={handlePointerOver}
         onPointerOut={handlePointerOut}
         onClick={handleNavigatetoPerdidaDiversidad}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Sign12_1.geometry}
+          material={materials['Dark Wood']}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Sign12_2.geometry}
+          material={materials['Light Wood']}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Sign12_3.geometry}
+          material={materials.Herbs}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Sign12_4.geometry}
+          material={materials.Rocks}
+        />
+      </group>
+      {/*Cartel Cuadrado Grande*/}
+      <group 
+        position={[-22, 0, 10]} rotation={[0, 1.571, 0]} scale={[2,2,3]} 
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
+        onClick={handleNavigatetoQuiz}>
         <mesh
           castShadow
           receiveShadow

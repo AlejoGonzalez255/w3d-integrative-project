@@ -12,10 +12,15 @@ import DestroyedNature from "../../components/PerdidaDiversidad/DestroyedNature/
 import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
 import Chikorita from "../../components/Chikorita/Chikorita";
 import Typhlosion from "../../components/Typhlosion/Typhlosion";
+import Charizard from "../../components/Charizard/Charizard";
 import Lights from "../../components/lights/Lights";
 import Staging from "../../components/staging/Staging";
 import ButtonStart from "../../components/ButtonStart/ButtonStart";
 import { useCombat } from "../../components/CombatLogic/CombatLogic";
+import Video from "../../components/PerdidaDiversidad/Video/Video";
+import { GarbageCan } from "../../components/PerdidaDiversidad/GarbageCan/GarbageCan";
+import { GarbageBag1 } from "../../components/PerdidaDiversidad/GarbageBag/GarbageBag";
+import ButtonGoBack from "../../components/ButtonGoBack/ButtonGoBack";
 
 const PerdidaDiversidad = () => {
   const [ready, setReady] = useState(false);
@@ -27,16 +32,31 @@ const PerdidaDiversidad = () => {
     playerHP,
     enemyHP,
     typhlosionVisible,
+    charizardVisible,
     combatMessage,
-    typhlosionMessage,
+    enemyMessage,
     startCombat,
     playerAttack,
     enemyAttack,
     exitCombat,
     isPlayerTurn,
+    currentEnemy,
+    enemyPosition, // Agregar esto
   } = useCombat();
+  
 
-  const texts = ["¡Hola!", "¿Cómo estás?", "¡Cuida la naturaleza!"];
+  const texts = [
+    `Bienvenido, sabias que antes este lugar
+    estaba lleno de vida y naturaleza`, 
+    
+    `Pero lastimosamente una gran cantidad de problemas llegaron..., 
+    la contaminacion, especies invasoras, la caceria ilegal y incendios
+    lo han dejado asi....`, 
+
+    `Quizas puedas ayudar al medioambiente 
+    combatiendo estos problemas`,
+
+  ];
 
   const keyboardMap = [
     { name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -69,14 +89,18 @@ const PerdidaDiversidad = () => {
 
   return (
     <>
+      <ButtonGoBack />
       <Canvas shadows={true}>
         <Lights />
         <Staging />
-        <Perf position="top-left" minimal />
+        {/* <Perf position="top-left" minimal /> */}
         <Suspense fallback={null}>
-          <Physics timeStep="vary" debug={true}>
+          <Physics timeStep="vary">
             <DestroyedNature />
-            {typhlosionVisible && <Typhlosion onClick={startCombat} />}
+            <GarbageCan/>
+            <GarbageBag1/>
+            {typhlosionVisible && <Typhlosion onClick={() => startCombat("Typhlosion")} />}
+            {charizardVisible && <Charizard onClick={() => startCombat("Charizard")} />}
             <Chikorita onClick={handleChikoritaClick} />
             <KeyboardControls map={keyboardMap} enabled={!isInCombat}>
               <Ecctrl animated scale={2} capsuleHalfHeight={0.05} capsuleRadius={0.2}>
@@ -88,25 +112,27 @@ const PerdidaDiversidad = () => {
             <Floor />
           </Physics>
 
+          <Video name="screen" position={[-10,6,22]} rotation={[0,9,0]} scale={7}  />
+  
           {/* Mensaje de Chikorita */}
           {greetingPlayed && (
             <Text
-              position={[-5, 3, 4]}
+              position={[-5, 4, 4]}
               rotation={[0, 2, 0]}
               color="Black"
-              fontSize={0.5}
+              fontSize={0.4}
               outlineWidth={0.9}
               outlineColor="White"
             >
               {texts[clickCount]}
             </Text>
           )}
-
-          {/* Mensaje de combate */}
+  
+          {/* Mensajes de combate */}
           {combatMessage && (
             <Text
-              position={[0, 4, 65]}
-              rotation={[0, 3, 0]}
+              position={enemyPosition}
+              rotation={[0, Math.PI, 0]}
               color="Red"
               fontSize={0.8}
               outlineWidth={0.9}
@@ -115,23 +141,21 @@ const PerdidaDiversidad = () => {
               {combatMessage}
             </Text>
           )}
-
-          {/* Mensaje de Typhlosion */}
-          {typhlosionMessage && (
+          {enemyMessage && (
             <Text
-              position={[0, 6, 68]}
-              rotation={[0, 3, 0]}
+              position={[enemyPosition[0], enemyPosition[1] - 3, enemyPosition[2]]}
+              rotation={[0, Math.PI, 0]}
               color="Orange"
-              fontSize={0.7}
+              fontSize={0.6}
               outlineWidth={0.9}
               outlineColor="Black"
             >
-              {typhlosionMessage}
+              {enemyMessage}
             </Text>
           )}
         </Suspense>
       </Canvas>
-
+  
       {isInCombat && (
         <div className="combat-interface">
           {/* Barra de vida del jugador */}
@@ -141,35 +165,41 @@ const PerdidaDiversidad = () => {
               <div className="health-fill" style={{ width: `${playerHP}%` }}></div>
             </div>
           </div>
-
+  
           {/* Barra de vida del enemigo */}
           <div className="combat-stats enemy-bar">
-            <p>Enemigo:</p>
+            <p>Enemigo: {currentEnemy}</p>
             <div className="health-bar">
               <div className="health-fill" style={{ width: `${enemyHP}%` }}></div>
             </div>
           </div>
-
-          {/* Botones de acción centrados en la parte inferior */}
+  
+          {/* Botones de acción */}
           <div className="combat-actions">
-            <button onClick={playerAttack} disabled={!isPlayerTurn}>Atacar</button>
-            <button onClick={enemyAttack} disabled={!isPlayerTurn}>Defender</button>
+            <button onClick={playerAttack} disabled={!isPlayerTurn}>
+              Atacar
+            </button>
+            <button onClick={enemyAttack} disabled={!isPlayerTurn}>
+              Defender
+            </button>
             <button onClick={exitCombat}>Huir</button>
           </div>
         </div>
       )}
-
+  
       <div
         onClick={() => setReady(true)}
         className={`fullscreen bg ${ready ? "ready" : "notready"} ${ready && "clicked"}`}
       >
         <ButtonStart />
       </div>
+
     </>
   );
 };
 
 export default PerdidaDiversidad;
+
 
 
 

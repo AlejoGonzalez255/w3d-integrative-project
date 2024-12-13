@@ -1,19 +1,40 @@
-
 import React, { useCallback, useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import { Html, PositionalAudio, useGLTF } from '@react-three/drei'
 import { RigidBody } from '@react-three/rapier'
+import generarNumeroAleatorio from '../../utils/randomNumberGenerator'
+import useQuizStore from '../../stores/use-quiz-store'
 
 export function GarbageBag(props) {
   const { nodes, materials } = useGLTF('models-3d/garbagebag.glb')
   const trashRef = useRef(null);
-  const handleBall = useCallback(() => {
-    trashRef.current.applyImpulse({ x: -0.7, y: 1.4, z: -0.3 }, true);
-  }, []);
+  const { quizStarted,setQuizPoints , setQuizStarted, quizPointReset} = useQuizStore();
+  const audioRef = useRef(null);
+
+
+  const reproducir = () => {
+    audioRef.current.volume = 0.5;
+    audioRef.current.play();
+  };
+
+
   return (
-    <RigidBody ref={trashRef} type="dynamic" colliders="cuboid">
-        <group {...props} dispose={null}>
+    <RigidBody name='GarbageBag' {...props} ref={trashRef} type="dynamic" colliders="cuboid" 
+      onCollisionEnter={({ other }) => {
+        if(other.rigidBodyObject.name === "bulbasaur"){
+          if(!quizStarted){
+            setQuizStarted(true);
+            quizPointReset();
+            return;
+          }
+          setQuizPoints();
+          reproducir();
+          trashRef.current.setTranslation({ x: generarNumeroAleatorio(), y: 2, z: generarNumeroAleatorio() }, true);
+          
+        }
+      }}>
+        <group dispose={null}>
         <mesh
-            onClick={handleBall}
+            // onClick={handleBall}
             castShadow
             receiveShadow
             geometry={nodes.Type_A.geometry}
@@ -21,7 +42,10 @@ export function GarbageBag(props) {
             position={[-0.5, 0, 0]}
         />
         </group>
-        </RigidBody>
+        <Html>
+          <audio ref={audioRef} src="/sounds/collect-points.mp3" />
+        </Html>
+      </RigidBody>
   )
 }
 

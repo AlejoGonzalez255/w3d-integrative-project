@@ -7,7 +7,7 @@ export default function Floor(props) {
       colliders="cuboid"
       ccd
       friction={0.65}
-      restitution={0.2}
+      restitution={0.3}
       {...props}
     >
       <mesh position={[0, -5, 0]} receiveShadow={true}>

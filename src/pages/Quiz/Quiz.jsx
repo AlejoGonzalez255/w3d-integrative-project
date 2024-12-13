@@ -39,7 +39,7 @@ function ModalQuiz({onHide, ...props}) {
       </Modal.Header>
       <Modal.Body>
         <p>
-          Haz salavdo al planeta de la contaminación. ¡Gracias por jugar!
+          Haz salvado al planeta de la contaminación. ¡Gracias por jugar!
         </p>
       </Modal.Body>
       <Modal.Footer>
@@ -51,7 +51,8 @@ function ModalQuiz({onHide, ...props}) {
 
 const Quiz = () => {
   const [ready, setReady] = useState(false);
-  const { quizStarted,  quizFinished, quizPoints, setQuizFinished} = useQuizStore();
+  const [scores, setScores] = useState([]); // Estado para almacenar los puntajes
+  const { quizStarted, quizFinished, quizPoints, setQuizFinished } = useQuizStore();
   const { user } = useAuthStore();
   const navigate = useNavigate();
   const [modalShow, setModalShow] = useState(false);
@@ -76,32 +77,57 @@ const Quiz = () => {
     jumpLand: 'JumpLand',
     fall: 'Fall',
   };
-  
+
+  // Función para obtener y actualizar los mejores puntajes
+  const fetchTopScores = async () => {
+    try {
+      const topScores = await QuizDAO.getTopScores();
+      setScores(topScores);
+    } catch (error) {
+      console.error("Error fetching top scores:", error);
+    }
+  };
+
+  // Efecto para guardar datos del quiz y actualizar los puntajes
   useEffect(() => {
     const saveQuizData = async () => {
       if (quizFinished) {
-        const userName = user.displayName;
+        const userName = user.displayName || user.email;
         const points = quizPoints;
-        
-        const quizData = { name: userName, points: points };
-        
-        await QuizDAO.createQuizRecord(quizData);
-        
-        setQuizFinished(false);
-        setModalShow(true);
 
+        try {
+          await QuizDAO.createQuizRecord({ name: userName, points });
+          setQuizFinished(false);
+          setModalShow(true);
+          fetchTopScores(); // Actualiza los puntajes después de guardar
+        } catch (error) {
+          console.error("Error saving quiz data:", error);
+        }
       }
     };
 
     saveQuizData();
+    fetchTopScores(); // Recupera los puntajes al montar el componente
   }, [quizFinished]);
-
 
   return (
     <>
-      <ModalQuiz show={modalShow} onHide={() => navigate("/lobby")}/>
+      <ModalQuiz show={modalShow} onHide={() => navigate("/lobby")} />
       <ButtonGoBack />
       <Clock />
+
+      {/* Sección para mostrar los mejores puntajes */}
+      <div className="top-scores">
+        <h2>🏆 Mejores Puntajes</h2>
+        <ol>
+          {scores.map((score, index) => (
+            <li key={index}>
+              {score.name} - {score.points} puntos
+            </li>
+          ))}
+        </ol>
+      </div>
+
       <Canvas shadows={true}>
         <Lights />
         <Staging />
@@ -112,10 +138,9 @@ const Quiz = () => {
               !quizStarted ? (
                 <>
                   <Text3D font={"/fonts/Archivo Black_Regular.json"} position={[-4.3, 2, 5.5]} rotation={[0, 2, 0]} lineHeight={0.6} size={0.4}>
-                    {`Comnezar el Juego
-              v`}
+                    {`Comenzar el Juego`}
                     <meshNormalMaterial color="black" />
-                  </ Text3D>
+                  </Text3D>
                   <GarbageBag scale={0.3} position={[-5.5, 2, 2.5]} />
                 </>
               ) :
@@ -123,7 +148,6 @@ const Quiz = () => {
                   <GarbageBag key={i} scale={0.5} position={[generarNumeroAleatorio(), 2, generarNumeroAleatorio()]} />
                 ))
             }
-            {/* <GarbageContainer position={[-2,-0.05,-2]} scale={1.5}/> */}
 
             <KeyboardControls map={keyboardMap}>
               <Ecctrl name="bulbasaur" animated scale={2} capsuleHalfHeight={0.05} capsuleRadius={0.2}>

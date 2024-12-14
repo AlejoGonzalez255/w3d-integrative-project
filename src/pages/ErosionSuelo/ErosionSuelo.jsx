@@ -9,12 +9,12 @@ import Lights from "../../components/lights/Lights";
 import ButtonStart from "../../components/ButtonStart/ButtonStart";
 import Bulbasaur from "../../components/Bulbasaur/Bulbasaur";
 import Chikorita from "../../components/Chikorita/Chikorita";
-import { SoccerBall } from "../../components/SoccerBall/SoccerBall";
 import Floor from "../../components/ErosionSuelo/Floor/Floor";
 import Walls from "../../components/ErosionSuelo/Walls/Walls";
 import Vegetaion from "../../components/ErosionSuelo/Vegetation/Vegetation";
 import WoodenSign from "../../components/ErosionSuelo/WoodenSign/WoodenSign";
 import Staging from "../../components/ErosionSuelo/Staging/Staging";
+import Video from "../../components/ErosionSuelo/Video/Video";
 import ButtonGoBack from "../../components/ButtonGoBack/ButtonGoBack";
 
 const ErosionSuelo = () => {
@@ -100,7 +100,9 @@ y las plantas ya no creen ni florecen en este lugar`,
             <Staging />
             <Vegetaion />
             <WoodenSign />
-            <SoccerBall position={[-7, 5, 0]}/>
+            <Video 
+            position={[2.9, 6.689, 7.79]}
+            rotation={[0, 9.43, 0.01]}/>
           </Physics>
         </Suspense>
         {greetingPlayed && (

@@ -8,7 +8,7 @@ export function WoodenSings(props) {
       <group
         position={[3, 0, 8]}
         rotation={[0, 1.571, 0]}
-        scale={[9, 4, 4]}
+        scale={[9, 4, 3.3]}
       >
         <mesh
           castShadow

@@ -101,7 +101,7 @@ y las plantas ya no creen ni florecen en este lugar`,
             <Vegetaion />
             <WoodenSign />
             <Video 
-            position={[2.9, 6.689, 7.79]}
+            position={[2.99, 6.689, 7.79]}
             rotation={[0, 9.43, 0.01]}/>
           </Physics>
         </Suspense>

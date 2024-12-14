@@ -129,4 +129,34 @@
       transform: rotate(450deg);
     }
   }
+
+  .top-scores {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Asegúrate de que esté encima del Canvas */
+    max-width: 200px; /* Ajusta si es necesario */
+  }
+  
+  .top-scores h2 {
+    margin: 0;
+    font-size: 1.2em;
+    text-align: center;
+  }
+  
+  .top-scores ol {
+    padding-left: 20px;
+    margin: 10px 0 0;
+  }
+  
+  .top-scores li {
+    font-size: 0.9em;
+    line-height: 1.4;
+  }
+  
   

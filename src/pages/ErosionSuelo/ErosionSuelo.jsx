@@ -13,6 +13,7 @@ import { SoccerBall } from "../../components/SoccerBall/SoccerBall";
 import Floor from "../../components/ErosionSuelo/Floor/Floor";
 import Walls from "../../components/ErosionSuelo/Walls/Walls";
 import Vegetaion from "../../components/ErosionSuelo/Vegetation/Vegetation";
+import WoodenSign from "../../components/ErosionSuelo/WoodenSign/WoodenSign";
 import Staging from "../../components/ErosionSuelo/Staging/Staging";
 import ButtonGoBack from "../../components/ButtonGoBack/ButtonGoBack";
 
@@ -98,6 +99,7 @@ y las plantas ya no creen ni florecen en este lugar`,
             <Walls />
             <Staging />
             <Vegetaion />
+            <WoodenSign />
             <SoccerBall position={[-7, 5, 0]}/>
           </Physics>
         </Suspense>

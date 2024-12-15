@@ -6,7 +6,7 @@ export function WoodenSings(props) {
   return (
     <group {...props} dispose={null}>
       <group
-        position={[3, 0, 8]}
+        position={[3, 0, 13.5]}
         rotation={[0, 1.571, 0]}
         scale={[9, 4, 3.3]}
       >

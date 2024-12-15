@@ -101,13 +101,13 @@ y las plantas ya no creen ni florecen en este lugar`,
             <Vegetaion />
             <WoodenSign />
             <Video 
-            position={[2.99, 6.689, 7.79]}
-            rotation={[0, 9.43, 0.01]}/>
+            position={[2.99, 6.689, 13.31]}
+            rotation={[0, 9.424, 0.01]}/>
           </Physics>
         </Suspense>
         {greetingPlayed && (
           <Text
-            position={[-5, 4.3, 4]}
+            position={[-4, 4.3, 4]}
             rotation={[0, 2, 0]}
             color="Black"
             fontSize={0.5}

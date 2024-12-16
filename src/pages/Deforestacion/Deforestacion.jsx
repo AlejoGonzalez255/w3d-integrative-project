@@ -1,6 +1,5 @@
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import { Perf } from "r3f-perf";
 import { Suspense, useState } from "react";
 import { KeyboardControls, Loader, Text } from "@react-three/drei";
 import Ecctrl, { EcctrlAnimation } from "ecctrl";
@@ -31,10 +30,10 @@ const Deforestacion = () => {
     `Hace unos años, este lugar era un paraíso. 
     Los árboles eran enormes y el aire fresco. 
     Ahora, la deforestación ha eliminado los bosques, 
-    el aire está más pesado y la fauna ha desaparecido.`, 
+    el aire está más pesado y la fauna ha desaparecido.`,
     `La deforestación afecta todo el ecosistema: el clima, 
     el suelo y los animales. Sin árboles, el CO2 no se absorbe, 
-    el cambio climático se intensifica y la erosión del suelo se acelera.`, 
+    el cambio climático se intensifica y la erosión del suelo se acelera.`,
     `Reforestar es clave. 
     Plantar árboles ayuda a restaurar el equilibrio ecológico. 
     También, la agroforestería combina cultivos con árboles, 
@@ -42,7 +41,7 @@ const Deforestacion = () => {
     `La educación es crucial. 
     Si más personas entienden el impacto de sus acciones, 
     podemos exigir políticas que promuevan la conservación 
-    y el uso responsable de los recursos.`, 
+    y el uso responsable de los recursos.`,
     `Restaurar ecosistemas es esencial. 
     No solo plantar árboles,
      sino también devolverle vida al suelo, 
@@ -50,7 +49,8 @@ const Deforestacion = () => {
      aunque en algunos casos es necesario un enfoque más complejo.`,
     `Aunque la deforestación es un gran desafío, 
     con compromiso y pequeñas acciones podemos revertir sus efectos 
-    y permitir que el planeta se recupere.`];
+    y permitir que el planeta se recupere.`,
+  ];
 
   // Mapeo de controles de teclado
   const keyboardMap = [
@@ -93,14 +93,21 @@ const Deforestacion = () => {
         <Suspense fallback={null}>
           <Physics>
             <PostProcessing />
-            <Chikorita onClick={handleChikoritaClick} />
-            <Table3d position={[6 ,0, 6]} scale={2}/>
-            <VideoDeforestation position={[5.94, 1.57, 6]} rotation={[0, 11,0]}/>
-            <Tv3d position={[6, 1, 6]} rotation={[0, 15.7,0]} scale={1.5}/>
-            <BeanBang position={[2, 0, 6]} /> 
-            <PokeBall  position={[-4,4,-4]} scale={0.2}/>
-            <GarbageBag scale={0.3} position={[2,2,2]}/>
-            <GarbageContainer scale={1.1}/>
+            <Chikorita
+              onClick={handleChikoritaClick}
+              onPointerOver={() => (document.body.style.cursor = "pointer")}
+              onPointerOut={() => (document.body.style.cursor = "default")}
+            />
+            <Table3d position={[6, 0, 6]} scale={2} />
+            <VideoDeforestation
+              position={[5.94, 1.57, 6]}
+              rotation={[0, 11, 0]}
+            />
+            <Tv3d position={[6, 1, 6]} rotation={[0, 15.7, 0]} scale={1.5} />
+            <BeanBang position={[2, 0, 6]} />
+            <PokeBall position={[-4, 4, -4]} scale={0.2} />
+            <GarbageBag scale={0.3} position={[2, 2, 2]} />
+            <GarbageContainer scale={1.1} />
             <DestroyedNature />
             <Suspense fallback={null}>
               <KeyboardControls map={keyboardMap}>
@@ -118,19 +125,19 @@ const Deforestacion = () => {
                   </EcctrlAnimation>
                 </Ecctrl>
               </KeyboardControls>
-            </Suspense>  
+            </Suspense>
             <FloorDeforestacion />
           </Physics>
         </Suspense>
         {greetingPlayed && (
           <Text
-          position={[-5, 3, 4]}
-          rotation={[0, 2, 0]}
-          color="Black"
-          fontSize={0.5}
+            position={[-5, 3, 4]}
+            rotation={[0, 2, 0]}
+            color="Black"
+            fontSize={0.5}
             outlineWidth={0.9}
             outlineColor="White"
-            >
+          >
             {texts[clickCount]}
           </Text>
         )}

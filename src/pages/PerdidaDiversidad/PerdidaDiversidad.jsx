@@ -2,7 +2,6 @@ import React from "react";
 import "./PerdidaDiversidad.css";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import { Perf } from "r3f-perf";
 import { Suspense, useState } from "react";
 import { KeyboardControls, Text } from "@react-three/drei";
 import Ecctrl, { EcctrlAnimation } from "ecctrl";
@@ -41,21 +40,19 @@ const PerdidaDiversidad = () => {
     exitCombat,
     isPlayerTurn,
     currentEnemy,
-    enemyPosition, // Agregar esto
+    enemyPosition,
   } = useCombat();
-  
 
   const texts = [
     `Bienvenido, sabias que antes este lugar
-    estaba lleno de vida y naturaleza`, 
-    
+    estaba lleno de vida y naturaleza`,
+
     `Pero lastimosamente una gran cantidad de problemas llegaron..., 
     la contaminacion, especies invasoras, la caceria ilegal y incendios
-    lo han dejado asi....`, 
+    lo han dejado asi....`,
 
     `Quizas puedas ayudar al medioambiente 
     combatiendo estos problemas`,
-
   ];
 
   const keyboardMap = [
@@ -93,18 +90,33 @@ const PerdidaDiversidad = () => {
       <Canvas shadows={true}>
         <Lights />
         <Staging />
-        {/* <Perf position="top-left" minimal /> */}
         <Suspense fallback={null}>
           <Physics timeStep="vary">
             <DestroyedNature />
-            <GarbageCan/>
-            <GarbageBag1/>
-            {typhlosionVisible && <Typhlosion onClick={() => startCombat("Typhlosion")} />}
-            {charizardVisible && <Charizard onClick={() => startCombat("Charizard")} />}
-            <Chikorita onClick={handleChikoritaClick} />
+            <GarbageCan />
+            <GarbageBag1 />
+            {typhlosionVisible && (
+              <Typhlosion onClick={() => startCombat("Typhlosion")} />
+            )}
+            {charizardVisible && (
+              <Charizard onClick={() => startCombat("Charizard")} />
+            )}
+            <Chikorita
+              onClick={handleChikoritaClick}
+              onPointerOver={() => (document.body.style.cursor = "pointer")}
+              onPointerOut={() => (document.body.style.cursor = "default")}
+            />
             <KeyboardControls map={keyboardMap} enabled={!isInCombat}>
-              <Ecctrl animated scale={2} capsuleHalfHeight={0.05} capsuleRadius={0.2}>
-                <EcctrlAnimation characterURL="models-3d/Bulbasaur.glb" animationSet={animationSet}>
+              <Ecctrl
+                animated
+                scale={2}
+                capsuleHalfHeight={0.05}
+                capsuleRadius={0.2}
+              >
+                <EcctrlAnimation
+                  characterURL="models-3d/Bulbasaur.glb"
+                  animationSet={animationSet}
+                >
                   <Bulbasaur />
                 </EcctrlAnimation>
               </Ecctrl>
@@ -112,8 +124,13 @@ const PerdidaDiversidad = () => {
             <Floor />
           </Physics>
 
-          <Video name="screen" position={[-10,6,22]} rotation={[0,9,0]} scale={7}  />
-  
+          <Video
+            name="screen"
+            position={[-10, 6, 22]}
+            rotation={[0, 9, 0]}
+            scale={7}
+          />
+
           {/* Mensaje de Chikorita */}
           {greetingPlayed && (
             <Text
@@ -127,7 +144,7 @@ const PerdidaDiversidad = () => {
               {texts[clickCount]}
             </Text>
           )}
-  
+
           {/* Mensajes de combate */}
           {combatMessage && (
             <Text
@@ -143,7 +160,11 @@ const PerdidaDiversidad = () => {
           )}
           {enemyMessage && (
             <Text
-              position={[enemyPosition[0], enemyPosition[1] - 3, enemyPosition[2]]}
+              position={[
+                enemyPosition[0],
+                enemyPosition[1] - 3,
+                enemyPosition[2],
+              ]}
               rotation={[0, Math.PI, 0]}
               color="Orange"
               fontSize={0.6}
@@ -155,25 +176,31 @@ const PerdidaDiversidad = () => {
           )}
         </Suspense>
       </Canvas>
-  
+
       {isInCombat && (
         <div className="combat-interface">
           {/* Barra de vida del jugador */}
           <div className="combat-stats player-bar">
             <p>Tu vida:</p>
             <div className="health-bar">
-              <div className="health-fill" style={{ width: `${playerHP}%` }}></div>
+              <div
+                className="health-fill"
+                style={{ width: `${playerHP}%` }}
+              ></div>
             </div>
           </div>
-  
+
           {/* Barra de vida del enemigo */}
           <div className="combat-stats enemy-bar">
             <p>Enemigo: {currentEnemy}</p>
             <div className="health-bar">
-              <div className="health-fill" style={{ width: `${enemyHP}%` }}></div>
+              <div
+                className="health-fill"
+                style={{ width: `${enemyHP}%` }}
+              ></div>
             </div>
           </div>
-  
+
           {/* Botones de acción */}
           <div className="combat-actions">
             <button onClick={playerAttack} disabled={!isPlayerTurn}>
@@ -186,22 +213,17 @@ const PerdidaDiversidad = () => {
           </div>
         </div>
       )}
-  
+
       <div
         onClick={() => setReady(true)}
-        className={`fullscreen bg ${ready ? "ready" : "notready"} ${ready && "clicked"}`}
+        className={`fullscreen bg ${ready ? "ready" : "notready"} ${
+          ready && "clicked"
+        }`}
       >
         <ButtonStart />
       </div>
-
     </>
   );
 };
 
 export default PerdidaDiversidad;
-
-
-
-
-
-

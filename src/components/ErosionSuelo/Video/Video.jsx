@@ -19,8 +19,21 @@ const Video = (props) => {
     [pause, setPause, texture]
   );
 
+  const handlePointerOver = useCallback(() => {
+    document.body.style.cursor = "pointer";
+  }, []);
+
+  const handlePointerOut = useCallback(() => {
+    document.body.style.cursor = "default";
+  }, []);
+
   return (
-    <mesh {...props} onClick={handleVideo}>
+    <mesh
+      {...props}
+      onClick={handleVideo}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
+    >
       <planeGeometry args={[9, 5.361]} />
       <meshBasicMaterial map={texture} toneMapped={false} />
     </mesh>

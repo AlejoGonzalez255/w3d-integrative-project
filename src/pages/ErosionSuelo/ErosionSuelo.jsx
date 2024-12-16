@@ -1,6 +1,5 @@
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import { Perf } from "r3f-perf";
 import { Suspense, useState } from "react";
 import { KeyboardControls, Text } from "@react-three/drei";
 import Ecctrl, { EcctrlAnimation } from "ecctrl";
@@ -99,7 +98,6 @@ y las plantas ya no florecen más. `,
       <Canvas shadows={true}>
         <Lights />
         <Staging />
-        {/* <Perf position="top-left" minimal /> */}
         <Suspense fallback={null}>
           <Physics timeStep="vary">
             <KeyboardControls map={keyboardMap}>
@@ -117,15 +115,20 @@ y las plantas ya no florecen más. `,
                 </EcctrlAnimation>
               </Ecctrl>
             </KeyboardControls>
-            <Chikorita onClick={handleChikoritaClick} />
+            <Chikorita
+              onClick={handleChikoritaClick}
+              onPointerOver={() => (document.body.style.cursor = "pointer")}
+              onPointerOut={() => (document.body.style.cursor = "default")}
+            />
             <Floor />
             <Walls />
             <Staging />
             <Vegetaion />
             <WoodenSign />
-            <Video 
-            position={[2.99, 6.689, 13.31]}
-            rotation={[0, 9.424, 0.01]}/>
+            <Video
+              position={[2.99, 6.689, 13.31]}
+              rotation={[0, 9.424, 0.01]}
+            />
           </Physics>
         </Suspense>
         {greetingPlayed && (

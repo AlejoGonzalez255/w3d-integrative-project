@@ -23,20 +23,43 @@ const ErosionSuelo = () => {
   const [greetingPlayed, setGreetingPlayed] = useState(false);
 
   const texts = [
-    "Hola, mi nombre es Chikorita",
+    "Hola, bienvenido a este mundo",
 
-    `Hace mucho tiempo, este suelo era fertil y lleno de vida, 
-la tierra era firme, y las raices de los arboles eran fuertes frente
-a cualquier anversidad.`,
+    `Hace mucho tiempo, este suelo era fértil y lleno de vida, 
+la tierra era firme, y las raíces de los árboles eran fuertes 
+frente a cualquier adversidad. `,
 
-    `Pero con el tiempo, el suelo empezo a perder vida, los arboles fueron talados y la tierra
-quedo expuesta al clima, las fuertes lluvias se llevaron capas de la tierra fértil y los
-vientos, sin esa barrera que los protegia, el suelo empezo a erosionarse.`,
+    `    Pero con el tiempo, el suelo empezó a perder vida, los árboles
+    fueron talados y la tierra quedo expuesta al clima, las fuertes 
+    lluvias se llevaron capas de la tierra fértil, sin esa barrera 
+    que los protegía, el suelo empezó a erosionarse. `,
 
-    `Cada año que pasaba, el suelo se volvia mas debil, incapaz de mantener la vida,
-ahora lo que antes era un hermoso paisaje verde y sano, es ahora un terreno seco
-y sin vida, sin nutrientes, ni raices, el suelo es desliza facil en cada tormeta
-y las plantas ya no creen ni florecen en este lugar`,
+    `     Cada año que pasaba, el suelo se volvía más débil, incapaz de 
+    mantener vida, lo que antes era un hermoso paisaje verde y 
+    sano, es ahora un terreno seco y sin vida. `,
+
+    `sin nutrientes, ni raíces, el suelo es desliza fácil en cada tormenta
+y las plantas ya no florecen más. `,
+
+    `    pero nunca es tarde para salvar algo de vida, con ayuda esta 
+    tierra podrá volver de nuevo a la vida, plantando árboles 
+    y cubriéndolo con tierra fértil. `,
+
+    `     Poco a poco, esta tierra sin vida podrá renacer de nuevo, 
+    aun que la erosión haya dejado su marca, está siempre 
+    nos recordara que siempre habrá una oportunidad para 
+    devolverle a la tierra lo que se le ha quitado. `,
+
+    `     Poco a poco, esta tierra sin vida podrá renacer de nuevo, 
+    aun que la erosión haya dejado su marca, está siempre 
+    nos recordara que siempre habrá una oportunidad para 
+    devolverle a la tierra lo que se le ha quitado. `,
+
+    `     A continuación, en el cartel grande hallaras un video
+    que habla sobre la erosión del suelo. Para reproducirlo, 
+    solo tienes que darle clic a la pantalla negra y para 
+    pausarlo solo tienes que volver a dar un clic.
+`,
   ];
 
   // Mapeo de controles de teclado

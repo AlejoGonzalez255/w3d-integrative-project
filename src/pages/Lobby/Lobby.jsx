@@ -1,7 +1,6 @@
 import "./Lobby.css";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import { Perf } from 'r3f-perf'
 import { Suspense, useEffect, useState } from "react";
 import { KeyboardControls, Text3D } from "@react-three/drei";
 import Ecctrl, { EcctrlAnimation } from "ecctrl";
@@ -28,59 +27,59 @@ const Lobby = () => {
   const [clickCount, setClickCount] = useState(0);
   const [greetingPlayed, setGreetingPlayed] = useState(false);
   const [intervalId, setIntervalId] = useState(null);
-  
+
   const texts = [
-    `¡Hola! Bienvenido a esta experiencia 3D interactiva. 
+    `    ¡Hola! Bienvenido a esta experiencia 3D interactiva. 
     Yo seré tu guía. Para moverte por la página, utiliza 
     las teclas W, A, S y D o las flechas del teclado. 
-    ¿Listo para explorar?`, 
-    
-    `Si quieres ver alrededor, 
+    ¿Listo para explorar? `,
+
+    `    Si quieres ver alrededor, 
     solo mantén presionado el clic izquierdo y arrastra el cursor. 
     ¡Así puedes mover la cámara! Y si necesitas saltar, 
-    solo presiona la barra espaciadora (Espacio). ¡Dale una prueba!`, 
-    
-    `Cuando veas el cursor cambiar a una mano, 
-    eso significa que puedes hacer clic en el objeto. 
-    Eso te permitirá descubrir más información o interactuar. 
-    Explora bien cada rincón; algunas sorpresas te esperan.`,
+    solo presiona la barra espaciadora (Espacio). ¡Dale una prueba! `,
 
-    `Ahora, 
-    esta página trata de algunos problemas ambientales 
+    `    Cuando veas el cursor cambiar a una mano, 
+    eso significa que puedes hacer clic en el objeto, 
+    Explora bien cada rincón; algunas sorpresas te esperan. `,
+
+    `    también podrás interactuar con los demás NPCS que veas 
+    dándoles un clic en ellos. Eso te permitirá descubrir más 
+    información o interactuar. `,
+
+    `    Ahora, esta página trata de algunos problemas ambientales 
     importantes que enfrentamos hoy en día. 
     Aquí podrás aprender más sobre temas como la deforestación, 
-    la erosión del suelo, y la pérdida de biodiversidad.`,
+    la erosión del suelo, y la pérdida de biodiversidad. `,
 
-    `Verás algunos carteles alrededor de esta área. 
+    `    Verás algunos carteles alrededor de esta área. 
     Al hacer clic en ellos, 
     podrás profundizar en cada problema. 
     Cada cartel te llevará a un espacio 
     que te explica el tema y qué puedes hacer para ayudar. 
-    ¡Explora cada uno!`,  
-  
+    ¡Explora cada uno! `,
   ];
 
   // Mapeo de controles de teclado
   const keyboardMap = [
-    { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
-    { name: 'backward', keys: ['ArrowDown', 'KeyS'] },
-    { name: 'leftward', keys: ['ArrowLeft', 'KeyA'] },
-    { name: 'rightward', keys: ['ArrowRight', 'KeyD'] },
-    { name: 'jump', keys: ['Space'] },
-    { name: 'run', keys: ['Shift'] },
+    { name: "forward", keys: ["ArrowUp", "KeyW"] },
+    { name: "backward", keys: ["ArrowDown", "KeyS"] },
+    { name: "leftward", keys: ["ArrowLeft", "KeyA"] },
+    { name: "rightward", keys: ["ArrowRight", "KeyD"] },
+    { name: "jump", keys: ["Space"] },
+    { name: "run", keys: ["Shift"] },
   ];
 
   // Animaciones de Bulbasaur
   const animationSet = {
-    idle: 'Idle',
-    walk: 'Walk',
-    run: 'Run',
-    jump: 'Jump',
-    jumpIdle: 'JumpIdle',
-    jumpLand: 'JumpLand',
-    fall: 'Fall',
+    idle: "Idle",
+    walk: "Walk",
+    run: "Run",
+    jump: "Jump",
+    jumpIdle: "JumpIdle",
+    jumpLand: "JumpLand",
+    fall: "Fall",
   };
-
 
   const handleSquirtleClick = () => {
     if (!greetingPlayed) {
@@ -93,7 +92,7 @@ const Lobby = () => {
   const startTextRotation = () => {
     // Configura un intervalo para cambiar el mensaje cada 3 segundos (3000 ms)
     const id = setInterval(() => {
-      setClickCount(prevCount => {
+      setClickCount((prevCount) => {
         if (prevCount < texts.length - 1) {
           return prevCount + 1;
         } else {
@@ -114,7 +113,6 @@ const Lobby = () => {
     fetchData();
   }, []);
 
-
   useEffect(() => {
     return () => clearInterval(intervalId);
   }, [intervalId]);
@@ -122,58 +120,103 @@ const Lobby = () => {
   return (
     <>
       <Canvas shadows={true}>
-          <Lights />
-          <Staging />
-          {/* <Perf position="top-left" minimal /> */}
-          <PostProcessing />
+        <Lights />
+        <Staging />
+        {/* <Perf position="top-left" minimal /> */}
+        <PostProcessing />
         <Suspense fallback={null}>
-          <Physics timeStep="vary" >
+          <Physics timeStep="vary">
             <NatureItems />
             <House />
             <WoodenSings />
             <TestDummy3d />
             {!greetingPlayed && (
               <>
-                <Text3D font={"/fonts/Archivo Black_Regular.json"} position={[-4.3,2, 5.5]}  rotation={[0,2,0]} lineHeight={0.6} size={0.4}>
-                {`Dame Click 
+                <Text3D
+                  font={"/fonts/Archivo Black_Regular.json"}
+                  position={[-4.3, 2, 5.5]}
+                  rotation={[0, 2, 0]}
+                  lineHeight={0.6}
+                  size={0.4}
+                >
+                  {`Dame Click 
         v`}
-              <meshNormalMaterial color="black" />
-            </ Text3D>
+                  <meshNormalMaterial color="black" />
+                </Text3D>
               </>
             )}
-            
-            <Squirtle onClick={handleSquirtleClick}/>
+
+            <Squirtle onClick={handleSquirtleClick} />
             <KeyboardControls map={keyboardMap}>
-              <Ecctrl animated scale={2} capsuleHalfHeight={0.05} capsuleRadius={0.2}>
-                <EcctrlAnimation characterURL="models-3d/Bulbasaur.glb" animationSet={animationSet}>
+              <Ecctrl
+                animated
+                scale={2}
+                capsuleHalfHeight={0.05}
+                capsuleRadius={0.2}
+              >
+                <EcctrlAnimation
+                  characterURL="models-3d/Bulbasaur.glb"
+                  animationSet={animationSet}
+                >
                   <Bulbasaur />
                 </EcctrlAnimation>
               </Ecctrl>
             </KeyboardControls>
             <Floor />
           </Physics>
-          <Text position={[0, 6.5, 10]} rotation={[0, -3.15, 0]} color={"black"}>
+          <Text
+            position={[0, 6.5, 10]}
+            rotation={[0, -3.15, 0]}
+            color={"black"}
+          >
             {"Bienvenido a ECOEARTH!"}
           </Text>
-          <Text position={[0, 5.5, 10]} rotation={[0, -3.15, 0]} color={"black"} scale={0.5}>
-            {"Presiona uno de las carteles para aprender sobre los problemas de nuestro medioambiente"}
+          <Text
+            position={[0, 5.5, 10]}
+            rotation={[0, -3.15, 0]}
+            color={"black"}
+            scale={0.5}
+          >
+            {
+              "Presiona uno de las carteles para aprender sobre los problemas de nuestro medioambiente"
+            }
           </Text>
-          <Text position={[0, 3.5, 9.9]} rotation={[0, -3.15, 0]} color={"black"} scale={0.5}>
+          <Text
+            position={[0, 3.5, 9.9]}
+            rotation={[0, -3.15, 0]}
+            color={"black"}
+            scale={0.5}
+          >
             {"La Perdidad de Diversidad"}
           </Text>
-          <Text position={[10, 3.5, 9.9]} rotation={[0, -3.15, 0]} color={"black"} scale={0.5}>
+          <Text
+            position={[10, 3.5, 9.9]}
+            rotation={[0, -3.15, 0]}
+            color={"black"}
+            scale={0.5}
+          >
             {"La Deforestacion"}
           </Text>
-          <Text position={[-11, 3.5, 9.9]} rotation={[0, -3.15, 0]} color={"black"} scale={0.5}>
+          <Text
+            position={[-11, 3.5, 9.9]}
+            rotation={[0, -3.15, 0]}
+            color={"black"}
+            scale={0.5}
+          >
             {"Erosion del Suelo"}
           </Text>
-          <Text position={[-22, 3.5, 9.9]} rotation={[0, -3.15, 0]} color={"black"} scale={0.5}>
+          <Text
+            position={[-22, 3.5, 9.9]}
+            rotation={[0, -3.15, 0]}
+            color={"black"}
+            scale={0.5}
+          >
             {"Mini juego"}
           </Text>
 
           {greetingPlayed && (
             <Text
-              position={[-5, 3, 4]} 
+              position={[-5, 3, 4]}
               rotation={[0, 2, 0]}
               color="Black"
               fontSize={0.2}
@@ -188,7 +231,9 @@ const Lobby = () => {
       <ModalSummary show={modalSummary} onHide={() => setModalSummary(false)} />
       <div
         onClick={() => setReady(true)}
-        className={`fullscreen bg ${ready ? "ready" : "notready"} ${ready && "clicked"}`}
+        className={`fullscreen bg ${ready ? "ready" : "notready"} ${
+          ready && "clicked"
+        }`}
       >
         <ButtonStart />
       </div>
@@ -198,5 +243,3 @@ const Lobby = () => {
 };
 
 export default Lobby;
-
-
